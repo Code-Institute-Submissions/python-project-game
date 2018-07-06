@@ -1,4 +1,9 @@
-/* EXPERIMENT */
-.experiment {
-    background-color: green;
+/* GENERAL */
+
+
+/* FOOTER */
+.footer-bespoke {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

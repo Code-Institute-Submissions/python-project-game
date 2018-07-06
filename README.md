@@ -25,3 +25,8 @@ See the at **/assets/images/mockup-the-big-coffee-quiz.pdf**
 
 #### Sources
 Background image: [pixabay.com](https://pixabay.com/en/coffee-coffee-beans-drink-caffeine-1324126/)
+
+#### Material to go back to
+[tutor example](https://github.com/ckz8780/ci-pp-milestone-riddlemethis)
+[7 wonders example](http://radiusofcircle.blogspot.com/2016/03/making-quiz-website-with-python.html)
+[flask quiz example](https://github.com/vgel/simple-quiz)
