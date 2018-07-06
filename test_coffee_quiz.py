@@ -8,9 +8,9 @@ we progress with its creation
 
 class TestCoffeeQuiz(unittest.TestCase):
     
-    def test_app_exists(self):
+    def test_test(self):
         """
-        Test to see if there is an app
+        Test to see if the test runs
         """
         self.assertEqual(1, 1)
 

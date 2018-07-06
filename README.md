@@ -7,6 +7,10 @@ If a player guesses incorrectly, their incorrect guess is stored and printed bel
 Multiple players can play an instance of the game at the same time. Users are identified by a unique username.
 Create a leaderboard that ranks top scores for all users.
 
+#### Scope
+Scope 1 is simple and maps to the project brief and guidelines - this will be the project you submit for assessment so you can get certified
+Scope 2 might include additional features that are 'cool-to-have' but not essential. 
+
 #### Mockup
 See the at **/assets/images/mockup-the-big-coffee-quiz.pdf**
 
