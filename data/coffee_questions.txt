@@ -1,0 +1,38 @@
+question: 1. A type of coffee brewed by forcing steam or hot water through finely ground darkly roasted coffee beans.
+answer: espresso
+
+question: 2. Name the country with the world's largest prodcution of coffee.
+answer: brazil
+
+question: 3. This is the country where people drink the highest amount of coffee per capita.
+answer: finland
+
+question 4: The technique of of preparing coffee created by pouring microfoam into a shot of espresso and resulting in a pattern or design on the surface of the latte is known as...
+answer: latte art
+
+question 5: The name of a cocktail containing hot coffee, Irish whiskey, and sugar stirred, and topped with thick cream.
+answer: irish coffee
+
+question 6:  A type of coffee drink prepared by diluting an espresso with hot water.
+answer: americano
+
+question 7: What do the initials SCAA stand for?
+answer: specialty coffee association of america
+
+question 8: A short shot of espresso, made with the normal amount of ground coffee but extracted with about half the amount of water in the same amount of time by using a finer grind.
+answer: ristretto
+
+question 9: From what continent did coffee originally came?
+answer: africa
+
+question 10: This symbolises a molecule of...
+image:
+answer: caffeine
+
+question 11: What type of coffee drink follows the recipe below...
+image:
+answer: capuccino
+
+question 12: What type of coffee drink follows the recipe below...
+image:
+answer: cafee mocha
