@@ -14,22 +14,23 @@ def quiz_menu():
     option = input("Enter option: ")
     #Our function is going to return whathever option our user selects
     return option
-
-# def get_coffee_questions(dictionary_file):
-#     """
-#     Gets the questions from our .json file
-#     """
-#     with open("data/coffee_questions.json") as coffee_quiz:
-#         coffee_questions = json.loads(coffee_quiz.read())
-#         print(coffee_questions)
-#         return(coffee_questions)
-
+    
+def get_coffee_questions():
+    """
+    Gets the questions from our .json file
+    """
+    with open("data/coffee_questions.json", "r") as file:
+        coffee_quiz = json.load(file)
+        print(coffee_quiz)
+        return coffee_quiz
+        
 def game_loop():
     """Activates our game"""
     while True:
         option = quiz_menu()
         if option == "1":
-            print("You selected 'Start Quiz!'")
+            # print("You selected 'Start Quiz!'")
+            get_coffee_questions()
             # ask_questions()
         elif option == "2":
             print("Thanks for Playing. Good Bye")
@@ -49,5 +50,5 @@ game_loop()
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=2
+            debug=True
             )
