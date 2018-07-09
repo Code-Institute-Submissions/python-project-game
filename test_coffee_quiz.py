@@ -19,6 +19,13 @@ class TestCoffeeQuiz(unittest.TestCase):
         Test to ensure the button contains the message to start the quiz
         """
         menu = app.quiz_menu()
-        self.assertTrue("Start Quiz!" in menu)
-
+        self.assertTrue("1. Start Quiz!" in menu)
+    
+    def test_load_questions(self):
+        """
+        Test to ensure that questions are being loaded
+        """
+        coffee_questions = app.get_coffee_questions("coffee_questions.txt")
+        self.assertGreater(len(coffee_questions), 0)
+        
 print("All the tests passed!")

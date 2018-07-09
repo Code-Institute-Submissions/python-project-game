@@ -6,8 +6,33 @@ app = Flask(__name__)
 app.secret_key = "coffee_secret"
 
 def quiz_menu():
-    print("Start Quiz!")
-    return("Start Quiz!")
+    """Allows the user to begin the quiz"""
+    print("1. Start Quiz!")
+    print("2. Quit Game")
+    return("1. Start Quiz!", "2. Quit Game")
+
+def get_coffee_questions():
+    """
+    Gets the questions from our .txt file
+    """
+    with open("coffee_questions.txt") as file:
+        for question in file:
+            return question
+    
+def game_loop():
+    """Activates our game"""
+    while True:
+        option = quiz_menu()
+        if option == "1":
+            print("You selected 'Ask Questions'")
+            # ask_questions()
+        elif option == "2":
+            print("Thanks for Playing. Good Bye")
+            break
+        else:
+            print("Invalid option")
+        #After everything we'll print a blank line for aesthetic reasons
+        print("")
 
 @app.route("/")
 def index():
