@@ -14,14 +14,15 @@ def quiz_menu():
     option = input("Enter option: ")
     #Our function is going to return whathever option our user selects
     return option
-    
+
+
 def get_coffee_questions():
     """
     Gets the questions from our .json file
     """
     with open("data/coffee_questions.json", "r") as file:
         coffee_quiz = json.load(file)
-        print(coffee_quiz)
+        print(coffee_quiz["question_1"]["question"])
         return coffee_quiz
         
 def game_loop():
@@ -45,10 +46,10 @@ def game_loop():
 #     return render_template("index.html")
 # print("this works!")
 
-game_loop()
+# game_loop()
 
 if __name__ == "__main__":
-    app.run(host=os.environ.get("IP"),
-            port=int(os.environ.get("PORT")),
-            debug=True
-            )
+    game_loop()
+    # app.run(host=os.environ.get("IP"),
+    #         port=int(os.environ.get("PORT")),
+    #         debug=True)
