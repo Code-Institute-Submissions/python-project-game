@@ -24,7 +24,11 @@ def get_coffee_questions():
     #We open our json file and name it coffee_quiz
     with open("data/coffee_questions.json", "r") as file:
         coffee_quiz = json.load(file)
-        print(coffee_quiz["quiz_1"]["question"], coffee_quiz["quiz_2"]["question"])
+        # print(coffee_quiz["quiz_1"]["question"], coffee_quiz["quiz_2"]["question"])
+        # print(coffee_quiz)
+        for key, value in coffee_quiz.items():
+            print(value["question"])
+            print(value["answer"])
 
     #Now we get the length of our list of questions, which will be needed to keep
     #track of scores and let the user know how long is the quiz
@@ -41,6 +45,7 @@ def get_coffee_questions():
     
     #And we're ready to allow our user to input their guess
     
+    ##ANOTHER FOR LOOP FOR THE GUESSES OF EACH Q&A ?
       
     return coffee_quiz
     
