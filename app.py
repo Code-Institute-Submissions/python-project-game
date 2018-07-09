@@ -65,15 +65,28 @@ def game_loop():
         #After everything we'll print a blank line for aesthetic reasons
         print("")
 
-# @app.route("/")
-# def index():
-#     return render_template("index.html")
-# print("this works!")
+@app.route("/")
+def index():
+    return render_template("index.html")
+    
+# @app.route("/index/<quiz_number>")
+# def quiz(quiz_number):
+#     quiz = {}
+    
+#     with open("data/coffee_questions.json", "r") as file:
+#         quiz = json.load(file)
+#         for question in quiz:
+#             if question["url"] == quiz_number:
+#                 quiz = question
+   
+#     return render_template("quiz.html", quiz=quiz)
 
+# PENDING - Changes need to be made as the program runs when testing which is 
+#unwanted. Try moving the game_loop function later
 # game_loop()
 
 if __name__ == "__main__":
-    game_loop()
-    # app.run(host=os.environ.get("IP"),
-    #         port=int(os.environ.get("PORT")),
-    #         debug=True)
+    # game_loop()
+    app.run(host=os.environ.get("IP"),
+            port=int(os.environ.get("PORT")),
+            debug=True)
