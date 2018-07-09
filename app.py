@@ -5,6 +5,10 @@ from flask import Flask, render_template, request, flash
 app = Flask(__name__)
 app.secret_key = "coffee_secret"
 
+def quiz_menu():
+    print("Start Quiz!")
+    return("Start Quiz!")
+
 @app.route("/")
 def index():
     return render_template("index.html")
