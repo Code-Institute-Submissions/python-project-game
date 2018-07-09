@@ -1,71 +1,71 @@
 {
-    "question_1":
+    "quiz_1":
         {
             "question": "1. A type of coffee brewed by forcing steam or hot water through finely ground darkly roasted coffee beans.",
             "image": "no image",
             "answer": "espresso"
         },
-    "question_2":
+    "quiz_2":
         {
             "question": "2. Name the country with the world's largest prodcution of coffee.",
             "image": "no image",
             "answer": "brazil"
         },
-    "question_3":
+    "quiz_3":
         {
             "question": "3. This is the country where people drink the highest amount of coffee per capita.",
             "image": "no image",
             "answer": "finland"
         },
-    "question_4":
+    "quiz_4":
         {
             "question": "4. The technique of of preparing coffee created by pouring microfoam into a shot of espresso and resulting in a pattern or design on the surface of the latte is known as...",
             "image": "no image",
             "answer": "latte art"
         },
-    "question_5":
+    "quiz_5":
         {
             "question": "5. The name of a cocktail containing hot coffee, Irish whiskey, and sugar stirred, and topped with thick cream.",
             "image": "no image",
             "answer": "irish coffee"
         },
-    "question_6":
+    "quiz_6":
         {
             "question": "6.  A type of coffee drink prepared by diluting an espresso with hot water.",
             "image": "no image",
             "answer": "americano"
         },
-    "question_7":
+    "quiz_7":
         {
             "question": "7.: What do the initials SCAA stand for?",
             "image": "no image",
             "answer": "specialty coffee association of america"
         },
-    "question_8":
+    "quiz_8":
         {
             "question": "8. A short shot of espresso, made with the normal amount of ground coffee but extracted with about half the amount of water in the same amount of time by using a finer grind.",
             "image": "no image",
             "answer": "ristretto"
         },
-    "question_9":
+    "quiz_9":
         {
             "question": "9. From what continent did coffee originally came?",
             "image": "no image",
             "answer": "africa"
         },
-    "question_10":
+    "quiz_10":
         {
             "question": "10. This symbolises a molecule of...",
             "image": "/assets/images/Caffeine_structure.png",
             "answer": "caffeine"
         },
-    "question_11":
+    "quiz_11":
         {
             "question": "11. What type of coffee drink follows the recipe below...",
             "image": "/assets/images/coffee-type-question-milky.png",
             "answer": "capuccino"
         },
-    "question_12":
+    "quiz_12":
         {
             "question": "12. What type of coffee drink follows the recipe below...",
             "image": "/assets/images/coffee-type-question-chocolate.png",

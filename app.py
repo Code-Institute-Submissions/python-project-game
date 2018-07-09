@@ -20,10 +20,18 @@ def get_coffee_questions():
     """
     Gets the questions from our .json file
     """
+    
+    #We open our json file and name it coffee_quiz
     with open("data/coffee_questions.json", "r") as file:
         coffee_quiz = json.load(file)
-        print(coffee_quiz["question_1"]["question"])
+        print(coffee_quiz["quiz_1"]["question"], coffee_quiz["quiz_2"]["question"])
         return coffee_quiz
+
+    #Now we get the length of our list of questions, which will be needed to keep
+    #track of scores and let the user know how long is the quiz
+    
+        
+        
         
 def game_loop():
     """Activates our game"""
