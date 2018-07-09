@@ -25,14 +25,25 @@ def get_coffee_questions():
     with open("data/coffee_questions.json", "r") as file:
         coffee_quiz = json.load(file)
         print(coffee_quiz["quiz_1"]["question"], coffee_quiz["quiz_2"]["question"])
-        return coffee_quiz
 
     #Now we get the length of our list of questions, which will be needed to keep
     #track of scores and let the user know how long is the quiz
+    number_of_coffee_questions = len(coffee_quiz)
+    print(number_of_coffee_questions)
     
-        
-        
-        
+    #At this point, we need to iterate through our json file in order to get 
+    #our questions and answers, which we'll need for scoreing and guesses below
+    
+    ##PENDING - GET Q & A - FOR LOOP ?
+    
+    #We initialise an empty variable to keep track of the score
+    score = 0
+    
+    #And we're ready to allow our user to input their guess
+    
+      
+    return coffee_quiz
+    
 def game_loop():
     """Activates our game"""
     while True:

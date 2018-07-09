@@ -21,4 +21,12 @@ class TestCoffeeQuiz(unittest.TestCase):
         dictionary = app.get_coffee_questions()
         self.assertGreater(len(dictionary), 0)
         
+    def test_right_number_of_coffee_questions(self):
+        """
+        Checks that we have the right amount of questions in our quiz
+        """
+        quiz_length = app.get_coffee_questions()
+        print(quiz_length)
+        self.assertEqual(quiz_length, 12)
+        
 print("All the tests passed!")
