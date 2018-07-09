@@ -25,7 +25,7 @@ class TestCoffeeQuiz(unittest.TestCase):
         """
         Test to ensure that questions are being loaded
         """
-        coffee_questions = app.get_coffee_questions("coffee_questions.txt")
-        self.assertGreater(len(coffee_questions), 0)
+        dictionary = app.get_coffee_questions("data/coffee_questions.json")
+        self.assertGreater(len(dictionary), 0)
         
 print("All the tests passed!")
