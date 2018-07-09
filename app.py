@@ -29,7 +29,7 @@ def game_loop():
     while True:
         option = quiz_menu()
         if option == "1":
-            print("You selected 'Ask Questions'")
+            print("You selected 'Start Quiz!'")
             # ask_questions()
         elif option == "2":
             print("Thanks for Playing. Good Bye")
@@ -49,4 +49,5 @@ game_loop()
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=2
+            )
