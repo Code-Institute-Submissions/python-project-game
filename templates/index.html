@@ -1,5 +1,4 @@
-{% extends "base.html" %} 
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <section class="page-section clearfix">
     <div class="container">
@@ -9,10 +8,15 @@
                 <span class="section-heading-lower">The Big Coffee Quiz</span>
             </h2>
             <p class="mb-3"> Love coffee? This is your chance to espresso yourself!</br>
-            Answer to these questions and see if you can become the boss of beans.</p>
-            <div class="intro-button mx-auto">
-                <a class="btn btn-primary btn-xl" href="quiz.html">Start Quiz!</a>
-            </div>
+                Answer to these questions and see if you can become the boss of beans.</p>
+
+            <form method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+                <div class="intro-button mx-auto">
+                    <a class="btn btn-primary btn-xl" href="quiz.html">Start Quiz!</a>
+                </div>
+            </form>
         </div>
     </div>
 </section>
