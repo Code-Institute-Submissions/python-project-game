@@ -11,7 +11,8 @@
             <p class="mb-3"> Love coffee? This is your chance to espresso yourself!</br>
             Answer to these questions and see if you can become the boss of beans.</p>
             
-            {% block content %}      
+            {% block content %}
+                {{ username }}
                 Question : {{ question }} 
                 <form method="POST">
                 <label for="answer">Your answer:</label>

@@ -19,7 +19,7 @@ app.url_map.strict_slashes = False
 #     return option
 
 
-# def get_coffee_questions():
+# def start_coffee_questions():
 #     """
 #     Gets the questions from our .json file
 #     """
@@ -58,7 +58,7 @@ app.url_map.strict_slashes = False
 #         option = quiz_menu()
 #         if option == "1":
 #             # print("You selected 'Start Quiz!'")
-#             get_coffee_questions()
+#             start_coffee_questions()
 #             # ask_questions()
 #         elif option == "2":
 #             print("Thanks for Playing. Good Bye")
@@ -73,9 +73,17 @@ def index():
     return render_template("index.html")
     
 #PENDING - Re-add Methods to my route
-@app.route("/quiz")
+@app.route("/quiz", methods=["POST"])
 # We create a var with a couple of question to get it to work on a simple level
-def get_coffee_questions():
+def start_coffee_questions():
+
+    if request.form["username"]:
+        username = request.form["username"]
+        print(username)
+        flash("Let's Start, {}!".format(username))
+        return render_template("quiz.html", usernamer=username)
+    
+    
     riddles = [
     {"question": "short coffee?", "answer": "Espresso"},
     {"question": "Long coffee?", "answer": "Americano"},
@@ -90,12 +98,12 @@ def get_coffee_questions():
     score = 0
     # session = 1
     
-    if request.method == "POST":
-        if request.form["answer"].lower() == first_answer:
-            score += 1
-            flash("Correct!")
+    # if request.method == "POST":
+    #     if request.form["answer"].lower() == first_answer:
+    #         score += 1
+    #         flash("Correct!")
     
-        return render_template("quiz.html", first_question=first_question)
+    #     return render_template("quiz.html", first_question=first_question)
     
     
     
@@ -110,7 +118,7 @@ def get_coffee_questions():
     #                   session["player"], session["score"]))
         
 # @app.route("/index/<quiz_number>", methods=["GET", "POST"])
-# def get_coffee_questions(quiz_number):
+# def start_coffee_questions(quiz_number):
 #     coffee_question = {}
     
 #     with open("data/coffee_questions.json", "r") as file:
@@ -140,7 +148,7 @@ def get_coffee_questions():
 #unwanted. Try moving the game_loop function later
 # game_loop()
 
-# get_coffee_questions()
+# start_coffee_questions()
 
 if __name__ == "__main__":
     # game_loop()
