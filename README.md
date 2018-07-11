@@ -30,3 +30,17 @@ Background image: [pixabay.com](https://pixabay.com/en/coffee-coffee-beans-drink
 [tutor example](https://github.com/ckz8780/ci-pp-milestone-riddlemethis)
 [7 wonders example](http://radiusofcircle.blogspot.com/2016/03/making-quiz-website-with-python.html)
 [flask quiz example](https://github.com/vgel/simple-quiz)
+
+[Example of AJAX use](https://stackoverflow.com/questions/40963401/flask-dynamic-data-update-without-reload-page)
+Answer by **furas** - you can copy and search for the whole example:
+$.ajax({
+      url: "/suggestions",
+      type: "get",
+      data: {jsdata: text},
+      success: function(response) {
+        $("#place_for_suggestions").html(response);
+      },
+      error: function(xhr) {
+        //Do Something to handle error
+      }
+    });

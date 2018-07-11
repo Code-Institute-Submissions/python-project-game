@@ -81,8 +81,13 @@ def start_coffee_questions():
         username = request.form["username"]
         print(username)
         flash("Let's Start, {}!".format(username))
-        return render_template("quiz.html", usernamer=username)
+        
+        #PENDING - Add logic of questions HERE
+        
+        return render_template("quiz.html", username=username)
     
+    #PENDING - In order to render the questions in the same quiz.html we'll need ajax.
+    #See the readme file for an example
     
     riddles = [
     {"question": "short coffee?", "answer": "Espresso"},
