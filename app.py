@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, flash, redirect
 
 app = Flask(__name__)
 app.secret_key = "coffee_secret"
+app.url_map.strict_slashes = False
 
 # def quiz_menu():
 #     """
@@ -71,7 +72,8 @@ app.secret_key = "coffee_secret"
 def index():
     return render_template("index.html")
     
-@app.route("/quiz", methods=["GET", "POST"])
+#PENDING - Re-add Methods to my route
+@app.route("/quiz")
 # We create a var with a couple of question to get it to work on a simple level
 def get_coffee_questions():
     riddles = [

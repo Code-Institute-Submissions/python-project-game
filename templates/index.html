@@ -10,11 +10,13 @@
             <p class="mb-3"> Love coffee? This is your chance to espresso yourself!</br>
                 Answer to these questions and see if you can become the boss of beans.</p>
 
-            <form method="POST">
+            <form method="POST" action="/quiz">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username">
                 <div class="intro-button mx-auto">
-                    <a class="btn btn-primary btn-xl" href="quiz.html">Start Quiz!</a>
+                    <!--Remember to link to the root, not to the .html template! -->
+                    <a class="btn btn-primary btn-xl" href="/quiz/">Start Quiz!</a>
+                    <button class="btn btn-primary" type="submit">Start Quiz!</button>
                 </div>
             </form>
         </div>
