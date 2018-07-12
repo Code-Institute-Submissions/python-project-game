@@ -5,25 +5,20 @@
     <div class="container">
         <div class="intro-text left-0 text-center bg-faded p-5 rounded">
             <h2 class="section-heading mb-4">
+                <p class="mb-3">Hello, {{ username }}. Let's coffee up!</p>
                 <span class="section-heading-lower">Question 1 of 12</span>
-                <span class="section-heading-upper">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, officia.</span>
+                <p>Question : {{ question }} should say something here</p>
             </h2>
             <p class="mb-3"> Love coffee? This is your chance to espresso yourself!</br>
-            Answer to these questions and see if you can become the boss of beans.</p>
-
-                {{ username }}
-                Question : {{ question }} 
-                <form method="POST">
+                Answer to these questions and see if you can become the boss of beans.</p>
+            <form method="POST" action="/quiz">
                 <label for="answer">Your answer:</label>
                 <input type="text" id="answer" name="answer" required>
                 <div class="intro-button mx-auto">
-                    <a class="btn btn-primary btn-xl" href="#">Submit your answer!</a>
+                    <!--Remember to link to the root, not to the .html template! -->
+                    <button class="btn btn-primary" type="submit">Submit your answer</button>
                 </div>
             </form>
- 
-            <div class="intro-button mx-auto">
-                <a class="btn btn-primary btn-xl" href="#">Submit Answer</a>
-            </div>
         </div>
     </div>
 </section>
