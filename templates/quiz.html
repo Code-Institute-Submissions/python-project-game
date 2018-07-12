@@ -7,10 +7,13 @@
             <h2 class="section-heading mb-4">
                 <p class="mb-3">Hello, {{ username }}. Let's coffee up!</p>
                 <span class="section-heading-lower">Question 1 of 12</span>
-                <p>Question : {{ question }} should say something here</p>
+                <p>Question: </p>
+                {% for first_question in riddles %}
+                <p>{{ first_question }}</p>
+                {% endfor %}
             </h2>
-            <p class="mb-3"> Love coffee? This is your chance to espresso yourself!</br>
-                Answer to these questions and see if you can become the boss of beans.</p>
+            <p class="mb-3"> This is the space where the correct answer will be rendered in case of a wrong answer</br>
+                Invitation to please try again</p>
             <form method="POST" action="/quiz">
                 <label for="answer">Your answer:</label>
                 <input type="text" id="answer" name="answer" required>

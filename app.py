@@ -19,7 +19,7 @@ app.url_map.strict_slashes = False
 #     return option
 
 
-# def start_coffee_questions():
+# def get_coffee_quiz():
 #     """
 #     Gets the questions from our .json file
 #     """
@@ -58,7 +58,7 @@ app.url_map.strict_slashes = False
 #         option = quiz_menu()
 #         if option == "1":
 #             # print("You selected 'Start Quiz!'")
-#             start_coffee_questions()
+#             get_coffee_quiz()
 #             # ask_questions()
 #         elif option == "2":
 #             print("Thanks for Playing. Good Bye")
@@ -74,7 +74,7 @@ def index():
     
 @app.route("/quiz", methods=["POST"])
 # We create a var with a couple of question to get it to work on a simple level
-def start_coffee_questions():
+def get_coffee_quiz():
 
     riddles = [
         {"question": "short coffee?", "answer": "Espresso"},
@@ -85,20 +85,29 @@ def start_coffee_questions():
     if request.form["username"]:
         username = request.form["username"]
         print(username)
+        #PENDING - Flash is not rendering
         flash("Let's Start, {}!".format(username))
         
-        #Trying to add questions - START
-        
+    #Trying to add questions - START
+    def start_coffee_questions():
         first_question = riddles[0]["question"]
         print(first_question)
         first_answer = riddles[0]["answer"]
         print(first_answer)
+        return first_question
+    
+    first_question = start_coffee_questions()
+    
+    #PENDING - Initialise score and work on counter
+    # score = 0
+    
+    # if request.form["username"]:
+    #     username = request.form["username"]
+    #     print(username)
+
+    #Trying to add questions - END
         
-        score = 0
-        
-        #Tryingto add questions - END
-        
-        return render_template("quiz.html", username=username)
+    return render_template("quiz.html", username=username, riddles=riddles, first_question=first_question)
     
     #PENDING - In order to render the questions in the same quiz.html we'll need ajax.
     #See the readme file for an example
@@ -128,7 +137,7 @@ def start_coffee_questions():
     #                   session["player"], session["score"]))
         
 # @app.route("/index/<quiz_number>", methods=["GET", "POST"])
-# def start_coffee_questions(quiz_number):
+# def get_coffee_quiz(quiz_number):
 #     coffee_question = {}
     
 #     with open("data/coffee_questions.json", "r") as file:
@@ -158,7 +167,7 @@ def start_coffee_questions():
 #unwanted. Try moving the game_loop function later
 # game_loop()
 
-# start_coffee_questions()
+# get_coffee_quiz()
 
 if __name__ == "__main__":
     # game_loop()
