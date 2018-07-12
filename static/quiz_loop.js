@@ -1,18 +1,19 @@
 $( document ).ready(function() {
     console.log( "ready!" );
-    $("#search_form_input").keyup(function(){
-    var text = $(this).val();
-
-    $.ajax({
-      url: "/suggestions",
-      type: "get",
-      data: {jsdata: text},
-      success: function(response) {
-        $("#place_for_suggestions").html(response);
-      },
-      error: function(xhr) {
-        //Do Something to handle error
-      }
-    });
+    $('#submit_answer').on('click', function() {
+    preventDefault();
+    var answer = $('#answer_input').val();
+    var username = '{{ username }}';
+    $.post({
+    url: "/quiz",
+    data: {
+        username: username,
+        answer: answer
+    },
+    success: function(data) {
+        $('#answer_box').html(data);
+    },
+    traditional: true
+    }).done();
 });
 });
