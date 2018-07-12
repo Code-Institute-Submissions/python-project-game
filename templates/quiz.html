@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %} {% block content %}
 
 
 <section class="page-section clearfix">
@@ -10,18 +10,16 @@
             </h2>
             <p class="mb-3"> Love coffee? This is your chance to espresso yourself!</br>
             Answer to these questions and see if you can become the boss of beans.</p>
-            
-            {% block content %}
+
                 {{ username }}
                 Question : {{ question }} 
                 <form method="POST">
                 <label for="answer">Your answer:</label>
-                <input type="text" id="answer" name="answer">
+                <input type="text" id="answer" name="answer" required>
                 <div class="intro-button mx-auto">
                     <a class="btn btn-primary btn-xl" href="#">Submit your answer!</a>
                 </div>
             </form>
-            {% endblock %}
  
             <div class="intro-button mx-auto">
                 <a class="btn btn-primary btn-xl" href="#">Submit Answer</a>
@@ -29,3 +27,5 @@
         </div>
     </div>
 </section>
+
+{% endblock %}

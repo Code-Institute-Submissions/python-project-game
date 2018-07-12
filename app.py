@@ -72,35 +72,40 @@ app.url_map.strict_slashes = False
 def index():
     return render_template("index.html")
     
-#PENDING - Re-add Methods to my route
 @app.route("/quiz", methods=["POST"])
 # We create a var with a couple of question to get it to work on a simple level
 def start_coffee_questions():
+
+    riddles = [
+        {"question": "short coffee?", "answer": "Espresso"},
+        {"question": "Long coffee?", "answer": "Americano"},
+        {"question": "Milky coffee?", "answer": "Latte"}
+    ] 
 
     if request.form["username"]:
         username = request.form["username"]
         print(username)
         flash("Let's Start, {}!".format(username))
         
-        #PENDING - Add logic of questions HERE
+        #Trying to add questions - START
+        
+        first_question = riddles[0]["question"]
+        print(first_question)
+        first_answer = riddles[0]["answer"]
+        print(first_answer)
+        
+        score = 0
+        
+        #Tryingto add questions - END
         
         return render_template("quiz.html", username=username)
     
     #PENDING - In order to render the questions in the same quiz.html we'll need ajax.
     #See the readme file for an example
     
-    riddles = [
-    {"question": "short coffee?", "answer": "Espresso"},
-    {"question": "Long coffee?", "answer": "Americano"},
-    {"question": "Milky coffee?", "answer": "Latte"}
-    ] 
+   
     
-    first_question = riddles[0]["question"]
-    print(first_question)
-    first_answer = riddles[0]["answer"]
-    print(first_answer)
-    
-    score = 0
+
     # session = 1
     
     # if request.method == "POST":
