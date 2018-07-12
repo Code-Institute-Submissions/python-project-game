@@ -84,37 +84,53 @@ def get_coffee_quiz():
 
     if request.form["username"]:
         username = request.form["username"]
-        print(username)
+        # print(username)
         #PENDING - Flash is not rendering
         flash("Let's Start, {}!".format(username))
         
-    #Trying to add questions - START
+    #Adding first question - START
     def start_coffee_questions():
         first_question = riddles[0]["question"]
-        print(first_question)
-        first_answer = riddles[0]["answer"]
-        print(first_answer)
+        # print(first_question)
         return first_question
-    
+
     first_question = start_coffee_questions()
+    
+    #Adding first question - END
+    
+    #Trying to pass the answer and check if correct - START
+    
+    def start_coffee_answers():
+        first_answer = riddles[0]["answer"]
+        # print(first_answer)
+        return first_answer
+    
+    first_answer = start_coffee_answers()
+    
+    if request.form:
+        
+        #The guess would equal the user's input
+        first_guess = request.form["answer"].lower()
+        print(request.form)
+        #We need to check that our answer is correct
+        if first_guess == first_answer:
+            #If it is correct, we add 1 to our score and print some feedback
+            print("right!")
+            flash("Correct!")
+        else:
+            print("wrong!")
+            
+    #Trying to pass the answer and check if correct - END
     
     #PENDING - Initialise score and work on counter
     # score = 0
-    
-    # if request.form["username"]:
-    #     username = request.form["username"]
-    #     print(username)
 
-    #Trying to add questions - END
-        
-    return render_template("quiz.html", username=username, riddles=riddles, first_question=first_question)
+    return render_template("quiz.html", username=username, 
+    first_question=first_question, first_answer=first_answer, first_guess=first_guess)
     
     #PENDING - In order to render the questions in the same quiz.html we'll need ajax.
     #See the readme file for an example
     
-   
-    
-
     # session = 1
     
     # if request.method == "POST":
