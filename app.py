@@ -1,78 +1,34 @@
 import os
 import json
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect, session, url_for
 
 app = Flask(__name__)
 app.secret_key = "coffee_secret"
 app.url_map.strict_slashes = False
 
-# def quiz_menu():
-#     """
-#     Allows the user to begin the quiz
-#     """
-#     print("1. Start Quiz!")
-#     print("2. Quit Game")
-    
-#     #Then we'll write an option variable that takes user's input
-#     option = input("Enter option: ")
-#     #Our function is going to return whathever option our user selects
-#     return option
 
-
-# def get_coffee_quiz():
-#     """
-#     Gets the questions from our .json file
-#     """
-    
-#     #We open our json file and name it coffee_quiz
-#     with open("data/coffee_questions.json", "r") as file:
-#         coffee_quiz = json.load(file)
-#         # print(coffee_quiz["quiz_1"]["question"], coffee_quiz["quiz_2"]["question"])
-#         # print(coffee_quiz)
-#         for key, value in coffee_quiz.items():
-#             print(value["question"])
-#             print(value["answer"])
-
-#     #Now we get the length of our list of questions, which will be needed to keep
-#     #track of scores and let the user know how long is the quiz
-#     number_of_coffee_questions = len(coffee_quiz)
-#     print(number_of_coffee_questions)
-    
-#     #At this point, we need to iterate through our json file in order to get 
-#     #our questions and answers, which we'll need for scoreing and guesses below
-    
-#     ##PENDING - GET Q & A - FOR LOOP ?
-    
-#     #We initialise an empty variable to keep track of the score
-#     score = 0
-    
-#     #And we're ready to allow our user to input their guess
-    
-#     ##ANOTHER FOR LOOP FOR THE GUESSES OF EACH Q&A ?
-      
-#     return coffee_quiz
-    
-# def game_loop():
-#     """Activates our game"""
-#     while True:
-#         option = quiz_menu()
-#         if option == "1":
-#             # print("You selected 'Start Quiz!'")
-#             get_coffee_quiz()
-#             # ask_questions()
-#         elif option == "2":
-#             print("Thanks for Playing. Good Bye")
-#             break
-#         else:
-#             print("Invalid option")
-#         #After everything we'll print a blank line for aesthetic reasons
-#         print("")
-
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
+    if request.method == "POST":
+        print(request.form)
+        session['username'] = request.form["username"]
+        return redirect(url_for("get_coffee_quiz"))
     return render_template("index.html")
-    
-@app.route("/quiz", methods=["POST"])
+
+
+def start_coffee_answers(riddles):
+    first_answer = riddles[0]["answer"]
+    # print(first_answer)
+    return first_answer
+
+
+def start_coffee_questions(riddles):
+    first_question = riddles[0]["question"]
+    # print(first_question)
+    return first_question
+
+
+@app.route("/quiz", methods=["GET", "POST"])
 # We create a var with a couple of question to get it to work on a simple level
 def get_coffee_quiz():
 
@@ -82,51 +38,37 @@ def get_coffee_quiz():
         {"question": "Milky coffee?", "answer": "Latte"}
     ] 
 
-    if request.form["username"]:
-        username = request.form["username"]
-        # print(username)
-        #PENDING - Flash is not rendering
-        flash("Let's Start, {}!".format(username))
-        
     #Adding first question - START
-    def start_coffee_questions():
-        first_question = riddles[0]["question"]
-        # print(first_question)
-        return first_question
-
-    first_question = start_coffee_questions()
+    first_question = start_coffee_questions(riddles)
+    
+    if request.method == "GET":
+        return render_template("quiz.html", first_question=first_question)
     
     #Adding first question - END
     
     #Trying to pass the answer and check if correct - START
-    
-    def start_coffee_answers():
-        first_answer = riddles[0]["answer"]
-        # print(first_answer)
-        return first_answer
-    
-    first_answer = start_coffee_answers()
-    
-    if request.form:
-        
-        #The guess would equal the user's input
-        first_guess = request.form["answer"].lower()
-        print(request.form)
-        #We need to check that our answer is correct
-        if first_guess == first_answer:
-            #If it is correct, we add 1 to our score and print some feedback
-            print("right!")
-            flash("Correct!")
-        else:
-            print("wrong!")
+    first_answer = start_coffee_answers(riddles)
+    if request.method == "POST":
+        if request.form:
+            print(request.form)
+            #The guess would equal the user's input
+            first_guess = request.form["answer"].lower()
+            
+            #We need to check that our answer is correct
+            if first_guess == first_answer:
+                #If it is correct, we add 1 to our score and print some feedback
+                print("right!")
+                flash("Correct!")
+            else:
+                print("wrong!")
             
     #Trying to pass the answer and check if correct - END
     
     #PENDING - Initialise score and work on counter
     # score = 0
 
-    return render_template("quiz.html", username=username, 
-    first_question=first_question, first_answer=first_answer, first_guess=first_guess)
+        return render_template("quiz.html", username=session["username"], 
+            first_question=first_question, first_answer=first_answer, first_guess=first_guess)
     
     #PENDING - In order to render the questions in the same quiz.html we'll need ajax.
     #See the readme file for an example
