@@ -15,15 +15,13 @@ def index():
     return render_template("index.html")
 
 
-def start_coffee_answers(riddles):
-    first_answer = riddles[0]["answer"]
-    # print(first_answer)
-    return first_answer
+def start_coffee_answers(placeholderForRiddles):
+    placeholderForFirstAnswer = placeholderForRiddles[0]["answer"]
+    return placeholderForFirstAnswer
 
 
 def start_coffee_questions(placeholderForRiddles):
     placeholderForFirstQuestion = placeholderForRiddles[0]["question"]
-    # print(first_question)
     return placeholderForFirstQuestion
 
 
@@ -43,17 +41,19 @@ def get_coffee_quiz():
     first_question = start_coffee_questions(riddles)
     
     if request.method == "GET":
-        return render_template("quiz.html", first_question=first_question)
+        return render_template("quiz.html", first_question=first_question, username=session["username"])
     
     #Adding first question - END
     
     #Trying to pass the answer and check if correct - START
-    first_answer = start_coffee_answers(riddles)
+    first_answer = start_coffee_answers(riddles).lower()
+    
     if request.method == "POST":
         if request.form:
             print(request.form)
             #The guess would equal the user's input
             first_guess = request.form["answer"].lower()
+            print(first_answer, first_guess)
             
             #We need to check that our answer is correct
             if first_guess == first_answer:
