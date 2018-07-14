@@ -44,3 +44,5 @@ $.ajax({
         //Do Something to handle error
       }
     });
+    
+    [Example of Collapse](https://getbootstrap.com/docs/4.1/components/collapse/)

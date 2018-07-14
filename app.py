@@ -82,8 +82,13 @@ def get_coffee_quiz():
                                             first_guess=first_guess,
                                             score=session["score"])
     
-    #PENDING - In order to render the questions in the same quiz.html we'll need ajax.
-    #See the readme file for an example
+    #PENDING - When a guess is wrong, create a collapse that lets the user 
+    #choose to see the correct answer or keep trying. Link to the Bootstrap 
+    #Collapse in the readme
+    
+    #PENDING - Add "Question" to session. Initialise in 0, this will store
+    #the question's index and we'll be able to move from 1 to 12 without
+    #refreshing, using ajax or lots of URLs
  
     
     # #Logic example 
