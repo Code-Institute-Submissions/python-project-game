@@ -10,7 +10,6 @@ app.url_map.strict_slashes = False
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        print(request.form)
         session['username'] = request.form["username"]
         return redirect(url_for("get_coffee_quiz"))
     return render_template("index.html")
@@ -22,10 +21,10 @@ def start_coffee_answers(riddles):
     return first_answer
 
 
-def start_coffee_questions(riddles):
-    first_question = riddles[0]["question"]
+def start_coffee_questions(placeholderForRiddles):
+    placeholderForFirstQuestion = placeholderForRiddles[0]["question"]
     # print(first_question)
-    return first_question
+    return placeholderForFirstQuestion
 
 
 @app.route("/quiz", methods=["GET", "POST"])
@@ -36,9 +35,11 @@ def get_coffee_quiz():
         {"question": "short coffee?", "answer": "Espresso"},
         {"question": "Long coffee?", "answer": "Americano"},
         {"question": "Milky coffee?", "answer": "Latte"}
-    ] 
+    ]
 
     #Adding first question - START
+    #To avoid having nested functions, the start_coffee_questions function was
+    #moved to upper lines and just called here
     first_question = start_coffee_questions(riddles)
     
     if request.method == "GET":
