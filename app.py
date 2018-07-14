@@ -11,6 +11,8 @@ app.url_map.strict_slashes = False
 def index():
     if request.method == "POST":
         session['username'] = request.form["username"]
+        # Initialising a "score" variable to keep track of points
+        session['score'] = 0
         return redirect(url_for("get_coffee_quiz"))
     return render_template("index.html")
 
@@ -34,14 +36,16 @@ def get_coffee_quiz():
         {"question": "Long coffee?", "answer": "Americano"},
         {"question": "Milky coffee?", "answer": "Latte"}
     ]
-
+    
     #Adding first question - START
     #To avoid having nested functions, the start_coffee_questions function was
     #moved to upper lines and just called here
     first_question = start_coffee_questions(riddles)
     
     if request.method == "GET":
-        return render_template("quiz.html", first_question=first_question, username=session["username"])
+        return render_template("quiz.html", first_question=first_question,
+                                            username=session["username"],
+                                            score=session["score"])
     
     #Adding first question - END
     
@@ -59,6 +63,10 @@ def get_coffee_quiz():
             if first_guess == first_answer:
                 #If it is correct, we add 1 to our score and print some feedback
                 print("right!")
+                #Add points to "score"
+                session['score'] += 1
+                print(session['score'])
+                #PENDING - Get the Flash to work
                 flash("Correct!")
             else:
                 print("wrong!")
@@ -69,21 +77,14 @@ def get_coffee_quiz():
     # score = 0
 
         return render_template("quiz.html", username=session["username"], 
-            first_question=first_question, first_answer=first_answer, first_guess=first_guess)
+                                            first_question=first_question,
+                                            first_answer=first_answer,
+                                            first_guess=first_guess,
+                                            score=session["score"])
     
     #PENDING - In order to render the questions in the same quiz.html we'll need ajax.
     #See the readme file for an example
-    
-    # session = 1
-    
-    # if request.method == "POST":
-    #     if request.form["answer"].lower() == first_answer:
-    #         score += 1
-    #         flash("Correct!")
-    
-    #     return render_template("quiz.html", first_question=first_question)
-    
-    
+ 
     
     # #Logic example 
     # if request.method == "POST" and session["riddle_num"] < len(riddles):
