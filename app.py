@@ -11,23 +11,24 @@ app.url_map.strict_slashes = False
 riddles = []
 with open("data/coffee_questions.json", "r") as json_file:
     riddles = json.load(json_file)
-        
-i = 0
+    
+# i = 0
 
-def start_coffee_questions(placeholderForRiddles):
+
+def get_coffee_questions(placeholderForRiddles, i):
     """
     This function searches for and returns questions for the quiz 
     """
-    placeholderForFirstQuestion = placeholderForRiddles[i]["question"]
-    return placeholderForFirstQuestion
+    placeholderQuestion = placeholderForRiddles[i]["question"]
+    return placeholderQuestion
 
 
-def start_coffee_answers(placeholderForRiddles):
+def get_coffee_answers(placeholderForRiddles, i):
     """
     This function searches for and returns answers for the quiz 
     """
-    placeholderForFirstAnswer = placeholderForRiddles[i]["answer"]
-    return placeholderForFirstAnswer
+    placeholderAnswer = placeholderForRiddles[i]["answer"]
+    return placeholderAnswer
 
     
 #EXAMPLE: example of strategy to get all questions:
@@ -44,7 +45,7 @@ def index():
         session['username'] = request.form["username"]
         # Initialising a "score" variable to keep track of points
         session['score'] = 0
-        # session['quiz_num'] = 0
+        session['quiz_num'] = 0
         return redirect(url_for("get_coffee_quiz"))
     return render_template("index.html")
     
@@ -53,10 +54,12 @@ def index():
 # We create a var with a couple of question to get it to work on a simple level
 def get_coffee_quiz():
 
+    i = session['quiz_num']
+
     #Adding first question - START
-    #To avoid having nested functions, the start_coffee_questions function was
+    #To avoid having nested functions, the get_coffee_questions function was
     #moved to upper lines and just called here
-    first_question = start_coffee_questions(riddles)
+    coffee_question = get_coffee_questions(riddles, i)
     
     #Adding first question - END
     
@@ -70,29 +73,31 @@ def get_coffee_quiz():
     if request.method == "GET":
         #EXAMPLE: example of strategy to get all questions:
         #question = get_question(session["question"])
-        return render_template("quiz.html", first_question=first_question,
+        print("En el 'if GET', la variable coffee_question es: " + coffee_question)
+        return render_template("quiz.html", coffee_question=coffee_question,
                                             username=session["username"],
                                             score=session["score"])
     
     
     #Trying to pass the answer and check if correct - START
-    first_answer = start_coffee_answers(riddles).lower()
+    coffee_answer = get_coffee_answers(riddles, i).lower()
     
     if request.method == "POST":
         if request.form:
             print(request.form)
             #The guess would equal the user's input
             first_guess = request.form["answer"].lower()
-            print(first_answer, first_guess)
+            print(coffee_answer, first_guess)
             
             #We need to check that our answer is correct
-            if first_guess == first_answer:
+            if first_guess == coffee_answer:
                 #If it is correct, we add 1 to our score and print some feedback
                 print("right!")
                 #Add points to "score"
                 session['score'] += 1
                 print(session['score'])
-                # session['quiz_num'] += 1
+                session['quiz_num'] += 1
+                print(session['quiz_num'])
                 #PENDING - Get the Flash to work
                 flash("Correct!")
             else:
@@ -101,8 +106,8 @@ def get_coffee_quiz():
         #Trying to pass the answer and check if correct - END
 
         return render_template("quiz.html", username=session["username"], 
-                                            first_question=first_question,
-                                            first_answer=first_answer,
+                                            coffee_question=coffee_question,
+                                            coffee_answer=coffee_answer,
                                             first_guess=first_guess,
                                             score=session["score"])
     
