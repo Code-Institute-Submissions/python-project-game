@@ -1,19 +1,30 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <section class="page-section clearfix">
     <div class="container">
         <div class="intro-text left-0 text-center bg-faded p-5 rounded">
             <h2 class="section-heading mb-4">
                 <p class="mb-3">Hello, {{ username }}. Let's coffee up!</p>
-                <span class="section-heading-lower">Question 1 of 12</span>
-                <span class="font-weight-light text-muted">Score: {{ score }} of 12</span>
+                <span class="section-heading-lower">Question 1 of {{ number_of_questions }}</span>
+                <span class="font-weight-light text-muted">Score: {{ score }} of {{ number_of_questions }}</span>
                 <p>Question: </p>
                 <p>{{ coffee_question }}</p>
             </h2>
-            <p class="mb-3"> This is the space where the correct answer will be rendered in case of a wrong answer</br>
-                Invitation to please try again</p>
+            
+            <!--PENDING - Trying to get the "Try Again" collapsible button to 
+            render when the guess is different to the correct answer-->
+            {% if coffee_guess != coffee_answer %}
+            <div id="discover-answer">
+                <button class="btn btn-primary discover-answer" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Click here to discover answer
+                </button>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <p>The answer to this question is: <span class="font-weight-bold">{{ coffee_answer }}</span></p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
             <form method="POST" action="/quiz">
                 <label for="answer">Your answer:</label>
                 <input type="text" id="answer" name="answer" required>

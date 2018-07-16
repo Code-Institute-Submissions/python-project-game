@@ -11,8 +11,6 @@ app.url_map.strict_slashes = False
 riddles = []
 with open("data/coffee_questions.json", "r") as json_file:
     riddles = json.load(json_file)
-    
-# i = 0
 
 
 def get_coffee_questions(placeholderForRiddles, i):
@@ -22,7 +20,6 @@ def get_coffee_questions(placeholderForRiddles, i):
     placeholderQuestion = placeholderForRiddles[i]["question"]
     return placeholderQuestion
 
-
 def get_coffee_answers(placeholderForRiddles, i):
     """
     This function searches for and returns answers for the quiz 
@@ -30,15 +27,8 @@ def get_coffee_answers(placeholderForRiddles, i):
     placeholderAnswer = placeholderForRiddles[i]["answer"]
     return placeholderAnswer
 
-    
-#EXAMPLE: example of strategy to get all questions:
-# def get_question(index):
-    # question = questions_list[index]["question"]
-    # return question
 
-#EXAMPLE: example of strategy to get all questions:
-# question = get_question(session["question"])
-
+#Now we start writing our routes
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -76,21 +66,23 @@ def get_coffee_quiz():
         print("En el 'if GET', la variable coffee_question es: " + coffee_question)
         return render_template("quiz.html", coffee_question=coffee_question,
                                             username=session["username"],
-                                            score=session["score"])
+                                            score=session["score"],
+                                            number_of_questions=number_of_questions)
     
     
     #Trying to pass the answer and check if correct - START
     coffee_answer = get_coffee_answers(riddles, i).lower()
+    print(coffee_answer)
     
     if request.method == "POST":
         if request.form:
             print(request.form)
             #The guess would equal the user's input
-            first_guess = request.form["answer"].lower()
-            print(coffee_answer, first_guess)
+            coffee_guess = request.form["answer"].lower()
+            print(coffee_answer, coffee_guess)
             
             #We need to check that our answer is correct
-            if first_guess == coffee_answer:
+            if coffee_guess == coffee_answer:
                 #If it is correct, we add 1 to our score and print some feedback
                 print("right!")
                 #Add points to "score"
@@ -102,13 +94,16 @@ def get_coffee_quiz():
                 flash("Correct!")
             else:
                 print("wrong!")
+                # PENDIG - Get the collapsible button to render when wrong
+                # answer is given (see html for attempt)
+                
             
         #Trying to pass the answer and check if correct - END
 
         return render_template("quiz.html", username=session["username"], 
                                             coffee_question=coffee_question,
                                             coffee_answer=coffee_answer,
-                                            first_guess=first_guess,
+                                            coffee_guess=coffee_guess,
                                             score=session["score"])
     
     #PENDING - When a guess is wrong, create a collapse that lets the user 
