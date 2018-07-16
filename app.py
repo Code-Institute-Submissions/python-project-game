@@ -6,6 +6,30 @@ app = Flask(__name__)
 app.secret_key = "coffee_secret"
 app.url_map.strict_slashes = False
 
+#PENDING - Open JSON and create global var questions
+# questions_list = JSON.load(blablabla)
+   
+    
+def start_coffee_questions(placeholderForRiddles):
+    """
+    This function searches for and returns questions for the quiz 
+    """
+    placeholderForFirstQuestion = placeholderForRiddles[0]["question"]
+    return placeholderForFirstQuestion
+
+def start_coffee_answers(placeholderForRiddles):
+    """
+    This function searches for and returns answers for the quiz 
+    """
+    placeholderForFirstAnswer = placeholderForRiddles[0]["answer"]
+    return placeholderForFirstAnswer
+
+    
+#EXAMPLE: example of strategy to get all questions:
+# def get_question(index):
+    # question = questions_list[index]["question"]
+    # return question
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -15,34 +39,37 @@ def index():
         session['score'] = 0
         return redirect(url_for("get_coffee_quiz"))
     return render_template("index.html")
-
-
-def start_coffee_answers(placeholderForRiddles):
-    placeholderForFirstAnswer = placeholderForRiddles[0]["answer"]
-    return placeholderForFirstAnswer
-
-
-def start_coffee_questions(placeholderForRiddles):
-    placeholderForFirstQuestion = placeholderForRiddles[0]["question"]
-    return placeholderForFirstQuestion
-
+    
 
 @app.route("/quiz", methods=["GET", "POST"])
 # We create a var with a couple of question to get it to work on a simple level
 def get_coffee_quiz():
 
-    riddles = [
-        {"question": "short coffee?", "answer": "Espresso"},
-        {"question": "Long coffee?", "answer": "Americano"},
-        {"question": "Milky coffee?", "answer": "Latte"}
-    ]
+    # riddles = [
+    #     {"question": "short coffee?", "answer": "Espresso"},
+    #     {"question": "Long coffee?", "answer": "Americano"},
+    #     {"question": "Milky coffee?", "answer": "Latte"}
+    # ]
+    
+    riddles = []
+    
+    with open("data/coffee_questions.json", "r") as json_file:
+        riddles = json.load(json_file)
+        print(riddles)
+    
+    #Opening my JSON to get the questions and answers for the riddles
     
     #Adding first question - START
     #To avoid having nested functions, the start_coffee_questions function was
     #moved to upper lines and just called here
     first_question = start_coffee_questions(riddles)
     
+    #EXAMPLE: example of strategy to get all questions:
+    # question = get_question(session["question"])
+    
     if request.method == "GET":
+        #EXAMPLE: example of strategy to get all questions:
+        #question = get_question(session["question"])
         return render_template("quiz.html", first_question=first_question,
                                             username=session["username"],
                                             score=session["score"])
