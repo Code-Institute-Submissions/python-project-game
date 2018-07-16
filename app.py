@@ -14,18 +14,11 @@ with open("data/coffee_questions.json", "r") as json_file:
         
 i = 0
 
-def next_question():
-    """
-    This function increments the index to go to the next question
-    """
-    if (i < 12):
-        i += 1
-
 def start_coffee_questions(placeholderForRiddles):
     """
     This function searches for and returns questions for the quiz 
     """
-    placeholderForFirstQuestion = placeholderForRiddles[0]["question"]
+    placeholderForFirstQuestion = placeholderForRiddles[i]["question"]
     return placeholderForFirstQuestion
 
 
@@ -33,7 +26,7 @@ def start_coffee_answers(placeholderForRiddles):
     """
     This function searches for and returns answers for the quiz 
     """
-    placeholderForFirstAnswer = placeholderForRiddles[0]["answer"]
+    placeholderForFirstAnswer = placeholderForRiddles[i]["answer"]
     return placeholderForFirstAnswer
 
     
