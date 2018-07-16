@@ -6,16 +6,14 @@ app = Flask(__name__)
 app.secret_key = "coffee_secret"
 app.url_map.strict_slashes = False
 
-#PENDING - Open JSON and create global var questions
-# questions_list = JSON.load(blablabla)
-   
-    
+
 def start_coffee_questions(placeholderForRiddles):
     """
     This function searches for and returns questions for the quiz 
     """
     placeholderForFirstQuestion = placeholderForRiddles[0]["question"]
     return placeholderForFirstQuestion
+
 
 def start_coffee_answers(placeholderForRiddles):
     """
@@ -30,6 +28,8 @@ def start_coffee_answers(placeholderForRiddles):
     # question = questions_list[index]["question"]
     # return question
 
+#EXAMPLE: example of strategy to get all questions:
+# question = get_question(session["question"])
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -37,6 +37,7 @@ def index():
         session['username'] = request.form["username"]
         # Initialising a "score" variable to keep track of points
         session['score'] = 0
+        session['quiz_num'] = 0
         return redirect(url_for("get_coffee_quiz"))
     return render_template("index.html")
     
@@ -44,25 +45,20 @@ def index():
 @app.route("/quiz", methods=["GET", "POST"])
 # We create a var with a couple of question to get it to work on a simple level
 def get_coffee_quiz():
-
-    # riddles = [
-    #     {"question": "short coffee?", "answer": "Espresso"},
-    #     {"question": "Long coffee?", "answer": "Americano"},
-    #     {"question": "Milky coffee?", "answer": "Latte"}
-    # ]
-    
-    riddles = []
-    
-    with open("data/coffee_questions.json", "r") as json_file:
-        riddles = json.load(json_file)
-        print(riddles)
     
     #Opening my JSON to get the questions and answers for the riddles
-    
+    riddles = []
+    with open("data/coffee_questions.json", "r") as json_file:
+        riddles = json.load(json_file)
+
     #Adding first question - START
     #To avoid having nested functions, the start_coffee_questions function was
     #moved to upper lines and just called here
     first_question = start_coffee_questions(riddles)
+    
+    #Now we get the number of riddles in our quiz
+    number_of_questions = len(riddles)
+    print(number_of_questions)
     
     #EXAMPLE: example of strategy to get all questions:
     # question = get_question(session["question"])
@@ -93,15 +89,13 @@ def get_coffee_quiz():
                 #Add points to "score"
                 session['score'] += 1
                 print(session['score'])
+                session['quiz_num'] += 1
                 #PENDING - Get the Flash to work
                 flash("Correct!")
             else:
                 print("wrong!")
             
-    #Trying to pass the answer and check if correct - END
-    
-    #PENDING - Initialise score and work on counter
-    # score = 0
+        #Trying to pass the answer and check if correct - END
 
         return render_template("quiz.html", username=session["username"], 
                                             first_question=first_question,
