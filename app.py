@@ -35,44 +35,31 @@ def index():
         session['username'] = request.form["username"]
         # Initialising a "score" variable to keep track of points
         session['score'] = 0
+        #Initialising a session that will keep track of the number of questions
         session['quiz_num'] = 0
         return redirect(url_for("get_coffee_quiz"))
     return render_template("index.html")
     
 
 @app.route("/quiz", methods=["GET", "POST"])
-# We create a var with a couple of question to get it to work on a simple level
 def get_coffee_quiz():
 
     i = session['quiz_num']
 
-    #Adding first question - START
-    #To avoid having nested functions, the get_coffee_questions function was
-    #moved to upper lines and just called here
+    #Calling question and answer functions - START
     coffee_question = get_coffee_questions(riddles, i)
-    
-    #Adding first question - END
+    coffee_answer = get_coffee_answers(riddles, i).lower()
+    #Calling question and answer functions - END
     
     #Now we get the number of riddles in our quiz
     number_of_questions = len(riddles)
-    print(number_of_questions)
-    
-    #EXAMPLE: example of strategy to get all questions:
-    # question = get_question(session["question"])
-    
+
     if request.method == "GET":
-        #EXAMPLE: example of strategy to get all questions:
-        #question = get_question(session["question"])
-        print("En el 'if GET', la variable coffee_question es: " + coffee_question)
+        # print("En el 'if GET', la variable coffee_question es: " + coffee_question)
         return render_template("quiz.html", coffee_question=coffee_question,
                                             username=session["username"],
                                             score=session["score"],
                                             number_of_questions=number_of_questions)
-    
-    
-    #Trying to pass the answer and check if correct - START
-    coffee_answer = get_coffee_answers(riddles, i).lower()
-    print(coffee_answer)
     
     if request.method == "POST":
         if request.form:
@@ -80,39 +67,45 @@ def get_coffee_quiz():
             #The guess would equal the user's input
             coffee_guess = request.form["answer"].lower()
             print(coffee_answer, coffee_guess)
-            
             #We need to check that our answer is correct
             if coffee_guess == coffee_answer:
-                #If it is correct, we add 1 to our score and print some feedback
-                print("right!")
-                #Add points to "score"
-                session['score'] += 1
-                print(session['score'])
-                session['quiz_num'] += 1
-                print(session['quiz_num'])
-                #PENDING - Get the Flash to work
-                flash("Correct!")
+                if session['quiz_num'] < 12:
+                    #If it is correct, we add 1 to our score and print some feedback
+                    print("right!")
+                    #Add points to "score"
+                    session['score'] += 1
+                    session['quiz_num'] += 1
+                    print(session['quiz_num'])
+                    #PENDING - Get the Flash to work
+                    flash("Correct!")
+                    return render_template("quiz.html", username=session["username"], 
+                                                coffee_question=coffee_question,
+                                                coffee_answer=coffee_answer,
+                                                score=session["score"])
+                else:
+                    session['score'] += 1
+                    return render_template("gameover.html", username=session["username"], 
+                                                coffee_question=coffee_question,
+                                                coffee_answer=coffee_answer,
+                                                score=session["score"])
             else:
                 print("wrong!")
-                # PENDIG - Get the collapsible button to render when wrong
+                return render_template("quiz.html", username=session["username"], 
+                                            coffee_question=coffee_question,
+                                            coffee_answer=coffee_answer,
+                                            score=session["score"])
+                                            
+                # PENDING - Get the collapsible button to render when wrong
                 # answer is given (see html for attempt)
                 
             
         #Trying to pass the answer and check if correct - END
 
-        return render_template("quiz.html", username=session["username"], 
-                                            coffee_question=coffee_question,
-                                            coffee_answer=coffee_answer,
-                                            coffee_guess=coffee_guess,
-                                            score=session["score"])
     
     #PENDING - When a guess is wrong, create a collapse that lets the user 
     #choose to see the correct answer or keep trying. Link to the Bootstrap 
     #Collapse in the readme
     
-    #PENDING - Add "Question" to session. Initialise in 0, this will store
-    #the question's index and we'll be able to move from 1 to 12 without
-    #refreshing, using ajax or lots of URLs
  
     
     # #Logic example 
@@ -125,38 +118,10 @@ def get_coffee_quiz():
     #             flash("Correct answer, %s! Your score is %s." % (
     #                   session["player"], session["score"]))
         
-# @app.route("/index/<quiz_number>", methods=["GET", "POST"])
-# def get_coffee_quiz(quiz_number):
-#     coffee_question = {}
-    
-#     with open("data/coffee_questions.json", "r") as file:
-#         quiz = json.load(file)
-        
-#         # print(quiz["quiz_1"]["question"], quiz["quiz_2"]["question"])
-#         # print(quiz)
-#         # for key, value in quiz.items():
-#         #     print(value["question"])
-#         #     print(value["answer"])
-
-        
-#         for question in quiz:
-#             if question["url"] == quiz_number:
-#                 coffee_question = question
-                
-#     return render_template("quiz.html", coffee_question=coffee_question)
-    
-
-
-#     #Now we get the length of our list of questions, which will be needed to keep
-#     #track of scores and let the user know how long is the quiz
-#     number_of_coffee_questions = len(coffee_quiz)
-#     print(number_of_coffee_questions)
     
 # PENDING - Changes need to be made as the program runs when testing which is 
-#unwanted. Try moving the game_loop function later
-# game_loop()
+#unwanted. 
 
-# get_coffee_quiz()
 
 if __name__ == "__main__":
     # game_loop()

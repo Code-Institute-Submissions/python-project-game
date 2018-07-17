@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="page-section clearfix">
+    <div class="container">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+            <h2 class="section-heading mb-4">
+                <span class="section-heading-upper">Test your coffee knowledge</span>
+                <span class="section-heading-lower">The Big Coffee Quiz</span>
+            </h2>
+            <p class="mb-3"> Well Done!</br>
+                Your score is: {{ score }}</p>
+
+            <!--<form method="POST">-->
+            <!--    <label for="username">Username:</label>-->
+            <!--    <input type="text" id="username" name="username" required>-->
+            <!--    <div class="intro-button mx-auto">-->
+                    <!--Remember to link to the root, not to the .html template! -->
+            <!--        <button class="btn btn-primary" type="submit">Start Quiz!</button>-->
+            <!--    </div>-->
+            <!--</form>-->
+        </div>
+    </div>
+</section>
+
+{% endblock %}
