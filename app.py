@@ -43,7 +43,10 @@ def index():
 
 @app.route("/quiz", methods=["GET", "POST"])
 def get_coffee_quiz():
-
+    
+    #first ime page loads, sess num is 0, and takes q0 and a0 into coffee answer
+    #then i post it, but it all runs again before it checks to see whether it was get or post
+    #so sesion num is still zero at that point#
     i = session['quiz_num']
 
     #Calling question and answer functions - START
@@ -55,13 +58,20 @@ def get_coffee_quiz():
     number_of_questions = len(riddles)
 
     if request.method == "GET":
-        # print("En el 'if GET', la variable coffee_question es: " + coffee_question)
+        print("I am here in the 'if GET' statement")
         return render_template("quiz.html", coffee_question=coffee_question,
                                             username=session["username"],
                                             score=session["score"],
                                             number_of_questions=number_of_questions)
-    
-    if request.method == "POST":
+    #Trying to pass the answer and check if correct - START
+    elif request.method == "POST":
+    #While this avoided questions twice, The problem with this was that now questions
+    #would progress no matter if right or wring
+        # session['quiz_num'] += 1
+        # print("*****")
+        # print(session['quiz_num'])
+        # print("experiment")
+        print("I am in here in the 'if POST' statement")
         if request.form:
             print(request.form)
             #The guess would equal the user's input
@@ -74,6 +84,7 @@ def get_coffee_quiz():
                     print("right!")
                     #Add points to "score"
                     session['score'] += 1
+                    print(session['quiz_num'])
                     session['quiz_num'] += 1
                     print(session['quiz_num'])
                     #PENDING - Get the Flash to work
@@ -84,21 +95,18 @@ def get_coffee_quiz():
                                                 score=session["score"])
                 else:
                     session['score'] += 1
-                    return render_template("gameover.html", username=session["username"], 
-                                                coffee_question=coffee_question,
-                                                coffee_answer=coffee_answer,
-                                                score=session["score"])
+                    return redirect("gameover.html")
+                    # return render_template("gameover.html", username=session["username"], 
+                    #                             coffee_question=coffee_question,
+                    #                             coffee_answer=coffee_answer,
+                    #                             score=session["score"])
             else:
                 print("wrong!")
                 return render_template("quiz.html", username=session["username"], 
                                             coffee_question=coffee_question,
                                             coffee_answer=coffee_answer,
                                             score=session["score"])
-                                            
-                # PENDING - Get the collapsible button to render when wrong
-                # answer is given (see html for attempt)
                 
-            
         #Trying to pass the answer and check if correct - END
 
     
