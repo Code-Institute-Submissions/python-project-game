@@ -1,55 +1,55 @@
 [
     {
         "question": "1. A type of coffee brewed by forcing steam or hot water through finely ground darkly roasted coffee beans.",
-        "image": "no image",
+        "image": "/assets/images/Caffeine_structure.png",
         "answer": "espresso",
         "url": "question-one"
     },
     {
         "question": "2. Name the country with the world's largest prodcution of coffee.",
-        "image": "no image",
+        "image": "/assets/images/coffee-type-question-chocolate.png",
         "answer": "brazil",
         "url": "question-two"
     },
     {
         "question": "3. This is the country where people drink the highest amount of coffee per capita.",
-        "image": "no image",
+        "image": "/assets/images/Caffeine_structure.png",
         "answer": "finland",
         "url": "question-three"
     },
     {
         "question": "4. The technique of of preparing coffee created by pouring microfoam into a shot of espresso and resulting in a pattern or design on the surface of the latte is known as...",
-        "image": "no image",
+        "image": "/assets/images/Caffeine_structure.png",
         "answer": "latte art",
         "url": "question-four"
     },
     {
         "question": "5. The name of a cocktail containing hot coffee, Irish whiskey, and sugar stirred, and topped with thick cream.",
-        "image": "no image",
+        "image": "/assets/images/Caffeine_structure.png",
         "answer": "irish coffee",
         "url": "question-five"
     },
     {
         "question": "6.  A type of coffee drink prepared by diluting an espresso with hot water.",
-        "image": "no image",
+        "image": "/assets/images/Caffeine_structure.png",
         "answer": "americano",
         "url": "question-six"
     },
     {
         "question": "7. What do the initials SCAA stand for?",
-        "image": "no image",
+        "image": "/assets/images/Caffeine_structure.png",
         "answer": "specialty coffee association of america",
         "url": "question-seven"
     },
     {
         "question": "8. A short shot of espresso, made with the normal amount of ground coffee but extracted with about half the amount of water in the same amount of time by using a finer grind.",
-        "image": "no image",
+        "image": "/assets/images/Caffeine_structure.png",
         "answer": "ristretto",
         "url": "question-eight"
     },
     {
-        "question": "9. From what continent did coffee originally came?",
-        "image": "no image",
+        "question": "9. From what continent did coffee originally come?",
+        "image": "/assets/images/Caffeine_structure.png",
         "answer": "africa",
         "url": "question-nine"
     },
@@ -68,7 +68,7 @@
     {
         "question": "12. What type of coffee drink follows the recipe below...",
         "image": "/assets/images/coffee-type-question-chocolate.png",
-        "answer": "cafee mocha",
+        "answer": "cafe mocha",
         "url": "question-twelve"
     }
 ]

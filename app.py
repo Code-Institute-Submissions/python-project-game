@@ -1,6 +1,9 @@
 import os
 import json
 from flask import Flask, render_template, request, flash, redirect, session, url_for
+#PENDING find a way to get the images from the url in the json files and get the
+#logic so they render when they're supossed to [maybe importing urllib2 as explained in:
+#https://stackoverflow.com/questions/12511408/accepting-json-image-file-in-python]
 
 app = Flask(__name__)
 app.secret_key = "coffee_secret"
@@ -19,6 +22,15 @@ def get_coffee_questions(placeholderForRiddles, i):
     """
     placeholderQuestion = placeholderForRiddles[i]["question"]
     return placeholderQuestion
+
+#Trying to get image - START
+# def get_coffee_images(placeholderForRiddles, i):
+#     """
+#     This function searches for and returns images for the quiz 
+#     """
+#     placeholderImage = placeholderForRiddles[i]["image"]
+#     return placeholderImage
+#Trying to get image - END
 
 def get_coffee_answers(placeholderForRiddles, i):
     """
@@ -51,6 +63,9 @@ def get_coffee_quiz():
 
     #Calling question and answer functions - START
     coffee_question = get_coffee_questions(riddles, i)
+    #Trying to get image - START
+    # coffee_image = get_coffee_images(riddles, i)
+    #Trying to get image - END
     coffee_answer = get_coffee_answers(riddles, i).lower() #################### I'd actually put these in the GET request, noting the above ^^^ and get rid of "i"
     #Calling question and answer functions - END
     
@@ -60,6 +75,7 @@ def get_coffee_quiz():
     if request.method == "GET":
         print("I am here in the 'if GET' statement")
         return render_template("quiz.html", coffee_question=coffee_question,
+                                            # coffee_image=coffee_image,
                                             username=session["username"],
                                             score=session["score"],
                                             number_of_questions=number_of_questions)
@@ -79,7 +95,7 @@ def get_coffee_quiz():
             print("correct answer: ", coffee_answer, "user's answer: ", coffee_guess)
             #We need to check that our answer is correct
             if coffee_guess == coffee_answer:
-                if session['quiz_num'] <= len(riddles):
+                if session['quiz_num'] < len(riddles):
                     #If it is correct, we add 1 to our score and print some feedback
                     print("right!")
                     #Add points to "score"
@@ -100,19 +116,21 @@ def get_coffee_quiz():
                     flash("Correct!")
                     return render_template("quiz.html", username=session["username"], 
                                                 coffee_question=coffee_question,
+                                                # coffee_image=coffee_image,
                                                 coffee_answer=coffee_answer,
                                                 score=session["score"])
-                else:
+                elif session['quiz_num'] >= len(riddles):
                     session['score'] += 1
-                    return redirect("gameover.html")
-                    # return render_template("gameover.html", username=session["username"], 
-                    #                             coffee_question=coffee_question,
-                    #                             coffee_answer=coffee_answer,
-                    #                             score=session["score"])
+                    session['quiz_num'] += 0
+                    print("game over")
+                    # return redirect("gameover.html")
+                    return render_template("gameover.html", username=session["username"], 
+                                            score=session["score"])
             else:
                 print("wrong!")
                 return render_template("quiz.html", username=session["username"], 
                                             coffee_question=coffee_question,
+                                            # coffee_image=coffee_image,
                                             coffee_answer=coffee_answer,
                                             score=session["score"])
                 
