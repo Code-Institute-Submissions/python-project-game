@@ -47,11 +47,11 @@ def get_coffee_quiz():
     #first ime page loads, sess num is 0, and takes q0 and a0 into coffee answer
     #then i post it, but it all runs again before it checks to see whether it was get or post
     #so sesion num is still zero at that point#
-    i = session['quiz_num']
+    i = session['quiz_num'] ############################## This isn't needed if you call get_coffee_questions(riddles, session['quiz_num']) as I did on line 96
 
     #Calling question and answer functions - START
     coffee_question = get_coffee_questions(riddles, i)
-    coffee_answer = get_coffee_answers(riddles, i).lower()
+    coffee_answer = get_coffee_answers(riddles, i).lower() #################### I'd actually put these in the GET request, noting the above ^^^ and get rid of "i"
     #Calling question and answer functions - END
     
     #Now we get the number of riddles in our quiz
@@ -76,17 +76,26 @@ def get_coffee_quiz():
             print(request.form)
             #The guess would equal the user's input
             coffee_guess = request.form["answer"].lower()
-            print(coffee_answer, coffee_guess)
+            print("correct answer: ", coffee_answer, "user's answer: ", coffee_guess)
             #We need to check that our answer is correct
             if coffee_guess == coffee_answer:
-                if session['quiz_num'] < 12:
+                if session['quiz_num'] <= len(riddles):
                     #If it is correct, we add 1 to our score and print some feedback
                     print("right!")
                     #Add points to "score"
                     session['score'] += 1
-                    print(session['quiz_num'])
+                    print("before incrementing", session['quiz_num'])
                     session['quiz_num'] += 1
-                    print(session['quiz_num'])
+                    print("after incrementing", session['quiz_num'])
+                    
+                    # You incremented the question number in the session - now you need to remember to
+                    # go get the question/answer it corresponds to before returning the template! Without doing that,
+                    # the session var still gets incremented but you don't have the new question yet.
+                    # Thus it returns the same question the first time, but then starts working properly
+                    # after that point, it's just off by 1
+                    coffee_question = get_coffee_questions(riddles, session['quiz_num'])
+                    coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
+                    
                     #PENDING - Get the Flash to work
                     flash("Correct!")
                     return render_template("quiz.html", username=session["username"], 
