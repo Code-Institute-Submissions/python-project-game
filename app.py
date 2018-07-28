@@ -83,6 +83,7 @@ def get_coffee_quiz():
             # print(request.form)
             #The guess would equal the user's input
             coffee_guess = request.form["answer"].lower()
+            mistake = False
             print("coffee_answer: ", coffee_answer, "coffee_guess:  ", coffee_guess)
             print("session num:", session['quiz_num'])
             #We need to check that our answer is correct
@@ -111,7 +112,8 @@ def get_coffee_quiz():
                                                 coffee_guess=coffee_guess,
                                                 score=session["score"], 
                                                 session=session["quiz_num"],
-                                                number_of_questions=number_of_questions)
+                                                number_of_questions=number_of_questions,
+                                                mistake=mistake)
                 
                 elif session['quiz_num'] == len(riddles) - 1:
                     #If it is correct, we add 1 to our score and print some feedback
@@ -135,20 +137,23 @@ def get_coffee_quiz():
                                             coffee_image=coffee_image,
                                             coffee_answer=coffee_answer,
                                             coffee_guess=coffee_guess,
-                                            score=session["score"])
+                                            score=session["score"],
+                                            mistake=mistake)
 
             else:
                 print("wrong!")
                 print("coffee_guess: ", coffee_guess)
+                mistake = True
                 flash("Wrong!")
                 return render_template("quiz.html", username=session["username"], 
                                             coffee_question=coffee_question,
                                             coffee_image=coffee_image,
-                                            coffee_answer=coffee_answer,
-                                            coffee_guess=coffee_guess,
+                                            # coffee_answer=coffee_answer,
+                                            # coffee_guess=coffee_guess,
                                             score=session["score"],
                                             session=session["quiz_num"],
-                                            number_of_questions=number_of_questions)
+                                            number_of_questions=number_of_questions,
+                                            mistake=mistake)
                 
         #Trying to pass the answer and check if correct - END
 
