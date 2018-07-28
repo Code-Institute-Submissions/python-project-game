@@ -10,12 +10,12 @@
                 <p>Question: </p>
                 <p>{{ coffee_question }}</p>
                 <!--#Trying to get image - START-->
-                <!--{% if coffee_image %}-->
-                <!--<div>-->
-                <!--    <p>Pictorial Question:</p>-->
-                <!--    <img src={{ coffee_image }}>-->
-                <!--</div>-->
-                <!--{% endif %}-->
+                {% if coffee_image %}
+                <div>
+                    <p>Pictorial Question:</p>
+                    <img src="{{ url_for('static', filename=coffee_image) }}">
+                </div>
+                {% endif %}
                 <!--#Trying to get image - END-->
             </h2>
             

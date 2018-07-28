@@ -24,12 +24,12 @@ def get_coffee_questions(placeholderForRiddles, i):
     return placeholderQuestion
 
 #Trying to get image - START
-# def get_coffee_images(placeholderForRiddles, i):
-#     """
-#     This function searches for and returns images for the quiz 
-#     """
-#     placeholderImage = placeholderForRiddles[i]["image"]
-#     return placeholderImage
+def get_coffee_images(placeholderForRiddles, i):
+    """
+    This function searches for and returns images for the quiz 
+    """
+    placeholderImage = placeholderForRiddles[i]["image"]
+    return placeholderImage
 #Trying to get image - END
 
 def get_coffee_answers(placeholderForRiddles, i):
@@ -63,18 +63,19 @@ def get_coffee_quiz():
     #Calling question and answer functions - START
     coffee_question = get_coffee_questions(riddles, session['quiz_num'])
     #Trying to get image - START
-    # coffee_image = get_coffee_images(riddles, i)
+    coffee_image = get_coffee_images(riddles, session['quiz_num'])
     #Trying to get image - END
     coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower() #################### I'd actually put these in the GET request, noting the above ^^^ and get rid of "i"
     #Calling question and answer functions - END
     
     #Now we get the number of riddles in our quiz
     number_of_questions = len(riddles)
-
+    print("coffee_image is: ", coffee_image)
+    
     if request.method == "GET":
         # print("I am here in the 'if GET' statement")
         return render_template("quiz.html", coffee_question=coffee_question,
-                                            # coffee_image=coffee_image,
+                                            coffee_image=coffee_image,
                                             username=session["username"],
                                             score=session["score"],
                                             session=session["quiz_num"],
@@ -93,16 +94,12 @@ def get_coffee_quiz():
                     print("right!")
                     #Add points to "score"
                     session['score'] += 1
-                    # print("before incrementing", session['quiz_num'])
                     session['quiz_num'] += 1
-                    # print("after incrementing", session['quiz_num'])
                     
-                    # You incremented the question number in the session - now you need to remember to
-                    # go get the question/answer it corresponds to before returning the template! Without doing that,
-                    # the session var still gets incremented but you don't have the new question yet.
-                    # Thus it returns the same question the first time, but then starts working properly
-                    # after that point, it's just off by 1
+                    #Now we need to get the next question and its answer, 
+                    #remember the session has increased by one
                     coffee_question = get_coffee_questions(riddles, session['quiz_num'])
+                    coffee_image = get_coffee_images(riddles, session['quiz_num'])
                     coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
                     
                     print("session['quiz_num'] is: ", session['quiz_num'])
@@ -111,7 +108,7 @@ def get_coffee_quiz():
                     flash("Correct!")
                     return render_template("quiz.html", username=session["username"], 
                                                 coffee_question=coffee_question,
-                                                # coffee_image=coffee_image,
+                                                coffee_image=coffee_image,
                                                 coffee_answer=coffee_answer,
                                                 score=session["score"], 
                                                 session=session["quiz_num"],
@@ -122,34 +119,21 @@ def get_coffee_quiz():
                     print("right!")
                     #Add points to "score"
                     session['score'] += 1
-                    # print("before incrementing", session['quiz_num'])
+                    # Because we don't want to be out of range, we don't increment session
                     session['quiz_num'] += 0
-                    # print("after incrementing", session['quiz_num'])
                     
-                    # You incremented the question number in the session - now you need to remember to
-                    # go get the question/answer it corresponds to before returning the template! Without doing that,
-                    # the session var still gets incremented but you don't have the new question yet.
-                    # Thus it returns the same question the first time, but then starts working properly
-                    # after that point, it's just off by 1
+                    # We get the last question and its answer
                     coffee_question = get_coffee_questions(riddles, session['quiz_num'])
+                    coffee_image = get_coffee_images(riddles, session['quiz_num'])
                     coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
-                    
-                    print("session['quiz_num'] is: ", session['quiz_num'])
                     print("Last question, we should go to game over page")
                     
                     #PENDING - Get the Flash to work
                     flash("Correct!")
-                    # return render_template("quiz.html", username=session["username"], 
-                    #                             coffee_question=coffee_question,
-                    #                             # coffee_image=coffee_image,
-                    #                             coffee_answer=coffee_answer,
-                    #                             score=session["score"], 
-                    #                             session=session["quiz_num"],
-                    #                             number_of_questions=number_of_questions)   
-                    # return redirect("gameover.html")
+
                     return render_template("gameover.html", username=session["username"],
                                             coffee_question=coffee_question,
-                                             # coffee_image=coffee_image,
+                                            coffee_image=coffee_image,
                                             coffee_answer=coffee_answer,
                                             score=session["score"])
 
@@ -157,7 +141,7 @@ def get_coffee_quiz():
                 print("wrong!")
                 return render_template("quiz.html", username=session["username"], 
                                             coffee_question=coffee_question,
-                                            # coffee_image=coffee_image,
+                                            coffee_image=coffee_image,
                                             coffee_answer=coffee_answer,
                                             score=session["score"],
                                             session=session["quiz_num"],
