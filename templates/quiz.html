@@ -20,7 +20,8 @@
             
             <!--PENDING - Trying to get the "Try Again" collapsible button to 
             render when the guess is different to the correct answer-->
-            {% if coffee_guess != coffee_answer %}
+            
+            {% if not coffee_guess and session >= 1 %}
             <div id="discover-answer">
                 <button class="btn btn-primary discover-answer" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 Click here to discover answer
@@ -32,6 +33,7 @@
                 </div>
             </div>
             {% endif %}
+            
             <form method="POST" action="/quiz">
                 <label for="answer">Your answer:</label>
                 <input type="text" id="answer" name="answer" required>

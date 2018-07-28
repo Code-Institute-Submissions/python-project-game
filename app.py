@@ -67,12 +67,12 @@ def get_coffee_quiz():
     
     #Now we get the number of riddles in our quiz
     number_of_questions = len(riddles)
-    print("coffee_image is: ", coffee_image)
     
     if request.method == "GET":
         # print("I am here in the 'if GET' statement")
         return render_template("quiz.html", coffee_question=coffee_question,
                                             coffee_image=coffee_image,
+                                            coffee_answer=coffee_answer,
                                             username=session["username"],
                                             score=session["score"],
                                             session=session["quiz_num"],
@@ -83,9 +83,10 @@ def get_coffee_quiz():
             # print(request.form)
             #The guess would equal the user's input
             coffee_guess = request.form["answer"].lower()
-            print("correct answer: ", coffee_answer, "user's answer: ", coffee_guess)
+            print("coffee_answer: ", coffee_answer, "coffee_guess:  ", coffee_guess)
             #We need to check that our answer is correct
             if coffee_guess == coffee_answer:
+                print("session num:", session['quiz_num'])
                 if session['quiz_num'] < len(riddles) - 1:
                     #If it is correct, we add 1 to our score and print some feedback
                     print("right!")
@@ -107,6 +108,7 @@ def get_coffee_quiz():
                                                 coffee_question=coffee_question,
                                                 coffee_image=coffee_image,
                                                 coffee_answer=coffee_answer,
+                                                coffee_guess=coffee_guess,
                                                 score=session["score"], 
                                                 session=session["quiz_num"],
                                                 number_of_questions=number_of_questions)
@@ -136,6 +138,7 @@ def get_coffee_quiz():
 
             else:
                 print("wrong!")
+                flash("Wrong!")
                 return render_template("quiz.html", username=session["username"], 
                                             coffee_question=coffee_question,
                                             coffee_image=coffee_image,
