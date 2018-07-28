@@ -1,55 +1,55 @@
 [
     {
         "question": "1. A type of coffee brewed by forcing steam or hot water through finely ground darkly roasted coffee beans.",
-        "image": "images/Caffeine_structure.png",
+        "image": "",
         "answer": "espresso",
         "url": "question-one"
     },
     {
         "question": "2. Name the country with the world's largest prodcution of coffee.",
-        "image": "images/coffee-type-question-chocolate.png",
+        "image": "",
         "answer": "brazil",
         "url": "question-two"
     },
     {
         "question": "3. This is the country where people drink the highest amount of coffee per capita.",
-        "image": "images/Caffeine_structure.png",
+        "image": "",
         "answer": "finland",
         "url": "question-three"
     },
     {
         "question": "4. The technique of of preparing coffee created by pouring microfoam into a shot of espresso and resulting in a pattern or design on the surface of the latte is known as...",
-        "image": "images/Caffeine_structure.png",
+        "image": "",
         "answer": "latte art",
         "url": "question-four"
     },
     {
         "question": "5. The name of a cocktail containing hot coffee, Irish whiskey, and sugar stirred, and topped with thick cream.",
-        "image": "images/Caffeine_structure.png",
+        "image": "",
         "answer": "irish coffee",
         "url": "question-five"
     },
     {
         "question": "6.  A type of coffee drink prepared by diluting an espresso with hot water.",
-        "image": "images/Caffeine_structure.png",
+        "image": "",
         "answer": "americano",
         "url": "question-six"
     },
     {
         "question": "7. What do the initials SCAA stand for?",
-        "image": "images/Caffeine_structure.png",
+        "image": "",
         "answer": "specialty coffee association of america",
         "url": "question-seven"
     },
     {
         "question": "8. A short shot of espresso, made with the normal amount of ground coffee but extracted with about half the amount of water in the same amount of time by using a finer grind.",
-        "image": "images/Caffeine_structure.png",
+        "image": "",
         "answer": "ristretto",
         "url": "question-eight"
     },
     {
         "question": "9. From what continent did coffee originally come?",
-        "image": "images/Caffeine_structure.png",
+        "image": "",
         "answer": "africa",
         "url": "question-nine"
     },

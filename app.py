@@ -1,9 +1,6 @@
 import os
 import json
 from flask import Flask, render_template, request, flash, redirect, session, url_for
-#PENDING find a way to get the images from the url in the json files and get the
-#logic so they render when they're supossed to [maybe importing urllib2 as explained in:
-#https://stackoverflow.com/questions/12511408/accepting-json-image-file-in-python]
 
 app = Flask(__name__)
 app.secret_key = "coffee_secret"
@@ -126,7 +123,7 @@ def get_coffee_quiz():
                     coffee_question = get_coffee_questions(riddles, session['quiz_num'])
                     coffee_image = get_coffee_images(riddles, session['quiz_num'])
                     coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
-                    print("Last question, we should go to game over page")
+                    print("Last question, we now go to game over page")
                     
                     #PENDING - Get the Flash to work
                     flash("Correct!")
