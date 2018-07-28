@@ -88,7 +88,7 @@ def get_coffee_quiz():
             print("correct answer: ", coffee_answer, "user's answer: ", coffee_guess)
             #We need to check that our answer is correct
             if coffee_guess == coffee_answer:
-                if session['quiz_num'] < len(riddles):
+                if session['quiz_num'] < len(riddles) - 1:
                     #If it is correct, we add 1 to our score and print some feedback
                     print("right!")
                     #Add points to "score"
@@ -105,6 +105,8 @@ def get_coffee_quiz():
                     coffee_question = get_coffee_questions(riddles, session['quiz_num'])
                     coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
                     
+                    print("session['quiz_num'] is: ", session['quiz_num'])
+                    
                     #PENDING - Get the Flash to work
                     flash("Correct!")
                     return render_template("quiz.html", username=session["username"], 
@@ -114,14 +116,43 @@ def get_coffee_quiz():
                                                 score=session["score"], 
                                                 session=session["quiz_num"],
                                                 number_of_questions=number_of_questions)
-                                                
-                elif session['quiz_num'] >= len(riddles):
+                
+                elif session['quiz_num'] == len(riddles) - 1:
+                    #If it is correct, we add 1 to our score and print some feedback
+                    print("right!")
+                    #Add points to "score"
                     session['score'] += 1
+                    # print("before incrementing", session['quiz_num'])
                     session['quiz_num'] += 0
-                    print("game over")
+                    # print("after incrementing", session['quiz_num'])
+                    
+                    # You incremented the question number in the session - now you need to remember to
+                    # go get the question/answer it corresponds to before returning the template! Without doing that,
+                    # the session var still gets incremented but you don't have the new question yet.
+                    # Thus it returns the same question the first time, but then starts working properly
+                    # after that point, it's just off by 1
+                    coffee_question = get_coffee_questions(riddles, session['quiz_num'])
+                    coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
+                    
+                    print("session['quiz_num'] is: ", session['quiz_num'])
+                    print("Last question, we should go to game over page")
+                    
+                    #PENDING - Get the Flash to work
+                    flash("Correct!")
+                    # return render_template("quiz.html", username=session["username"], 
+                    #                             coffee_question=coffee_question,
+                    #                             # coffee_image=coffee_image,
+                    #                             coffee_answer=coffee_answer,
+                    #                             score=session["score"], 
+                    #                             session=session["quiz_num"],
+                    #                             number_of_questions=number_of_questions)   
                     # return redirect("gameover.html")
-                    return render_template("gameover.html", username=session["username"], 
+                    return render_template("gameover.html", username=session["username"],
+                                            coffee_question=coffee_question,
+                                             # coffee_image=coffee_image,
+                                            coffee_answer=coffee_answer,
                                             score=session["score"])
+
             else:
                 print("wrong!")
                 return render_template("quiz.html", username=session["username"], 
@@ -139,18 +170,6 @@ def get_coffee_quiz():
     #choose to see the correct answer or keep trying. Link to the Bootstrap 
     #Collapse in the readme
     
- 
-    
-    # #Logic example 
-    # if request.method == "POST" and session["riddle_num"] < len(riddles):
-    #     previous_riddle = riddles[session["riddle_num"]]
-    #     if request.form["answer"].lower() == previous_riddle["answer"]:
-    #         session["riddle_num"] += 1
-    #         session["score"] += 1
-    #         if session["riddle_num"] < len(riddles):
-    #             flash("Correct answer, %s! Your score is %s." % (
-    #                   session["player"], session["score"]))
-        
     
 # PENDING - Changes need to be made as the program runs when testing which is 
 #unwanted. 
