@@ -84,9 +84,9 @@ def get_coffee_quiz():
             #The guess would equal the user's input
             coffee_guess = request.form["answer"].lower()
             print("coffee_answer: ", coffee_answer, "coffee_guess:  ", coffee_guess)
+            print("session num:", session['quiz_num'])
             #We need to check that our answer is correct
             if coffee_guess == coffee_answer:
-                print("session num:", session['quiz_num'])
                 if session['quiz_num'] < len(riddles) - 1:
                     #If it is correct, we add 1 to our score and print some feedback
                     print("right!")
@@ -134,15 +134,18 @@ def get_coffee_quiz():
                                             coffee_question=coffee_question,
                                             coffee_image=coffee_image,
                                             coffee_answer=coffee_answer,
+                                            coffee_guess=coffee_guess,
                                             score=session["score"])
 
             else:
                 print("wrong!")
+                print("coffee_guess: ", coffee_guess)
                 flash("Wrong!")
                 return render_template("quiz.html", username=session["username"], 
                                             coffee_question=coffee_question,
                                             coffee_image=coffee_image,
                                             coffee_answer=coffee_answer,
+                                            coffee_guess=coffee_guess,
                                             score=session["score"],
                                             session=session["quiz_num"],
                                             number_of_questions=number_of_questions)

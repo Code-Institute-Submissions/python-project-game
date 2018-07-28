@@ -21,7 +21,7 @@
             <!--PENDING - Trying to get the "Try Again" collapsible button to 
             render when the guess is different to the correct answer-->
             
-            {% if not coffee_guess and session >= 1 %}
+            {% if (not coffee_guess and session >= 1) or (coffee_guess) %}
             <div id="discover-answer">
                 <button class="btn btn-primary discover-answer" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 Click here to discover answer
