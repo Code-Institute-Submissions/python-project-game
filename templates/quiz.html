@@ -7,7 +7,7 @@
                 <p class="mb-3">Hello, {{ username }}. Let's coffee up!</p>
                 <p class="section-heading-lower section-heading-lower-spiced">Question {{ session + 1 }} of {{ number_of_questions }}</p>
                 <p class="font-italic">Score: {{ score }} of {{ number_of_questions }}</p>
-                <h3>{{ coffee_question }}</h3>
+                <h3 class="mb-4">{{ coffee_question }}</h3>
             </h2>
                 <!--#Trying to get image - START-->
                 {% if coffee_image %}
@@ -22,13 +22,13 @@
             
             {% if mistake %}
             <div class="row">
-                <div class="col-xs-12 col-sm-12">You said: <span class="font-weight-bold">{{coffee_guess}}</span></div>
+                <div class="col-xs-12 col-sm-12 mb-3 font-italic" id="wrong-answer"><i class="far fa-times-circle"></i> You said: <span class="font-weight-bold">{{coffee_guess}}</span>. You were wrong. <i class="far fa-times-circle"></i></div>
                 <div id="discover-answer" class="col-xs-12 col-sm-12">
-                    <button class="btn btn-primary discover-answer" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <button class="btn btn-primary discover-answer mb-4" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     Click here to discover answer
                     </button>
                     <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
+                        <div class="card card-body mb-3">
                             <p>The answer to this question is: <span class="font-weight-bold">{{coffee_answer}}</span></p>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
             {% endif %}
             
             <form method="POST" action="/quiz">
-                <label for="answer">Your answer:</label>
+                <label for="answer" class="font-weight-bold mb-3">Your answer:</label>
                 <input type="text" id="answer" name="answer" required>
                 <div class="intro-button mx-auto">
                     <!--Remember to link to the root, not to the .html template! -->

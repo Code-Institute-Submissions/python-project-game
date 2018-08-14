@@ -1,5 +1,13 @@
 /* GENERAL */
 
+.font-raleway {
+    font-family: Raleway;
+}
+
+#wrong-answer {
+    font-size: x-large;
+}
+
 /* FOOTER */
 
 #footer-bespoke {
