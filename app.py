@@ -53,7 +53,7 @@ def index():
 @app.route("/quiz", methods=["GET", "POST"])
 def get_coffee_quiz():
     
-    #first ime page loads, sess num is 0, and takes q0 and a0 into coffee answer
+    #first time page loads, sess num is 0, and takes q0 and a0 into coffee answer
     #then i post it, but it all runs again before it checks to see whether it was get or post
     #so sesion num is still zero at that point#
 
@@ -62,7 +62,7 @@ def get_coffee_quiz():
     #Trying to get image - START
     coffee_image = get_coffee_images(riddles, session['quiz_num'])
     #Trying to get image - END
-    coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower() #################### I'd actually put these in the GET request, noting the above ^^^ and get rid of "i"
+    coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower() # I'd actually put these in the GET request, noting the above ^^^ and get rid of "i"
     #Calling question and answer functions - END
     
     #Now we get the number of riddles in our quiz
@@ -80,7 +80,7 @@ def get_coffee_quiz():
     #Trying to pass the answer and check if correct - START
     elif request.method == "POST":
         if request.form:
-            # print(request.form)
+            print('request.form is:', request.form)
             #The guess would equal the user's input
             coffee_guess = request.form["answer"].lower()
             mistake = False
@@ -148,8 +148,8 @@ def get_coffee_quiz():
                 return render_template("quiz.html", username=session["username"], 
                                             coffee_question=coffee_question,
                                             coffee_image=coffee_image,
-                                            # coffee_answer=coffee_answer,
-                                            # coffee_guess=coffee_guess,
+                                            coffee_answer=coffee_answer,
+                                            coffee_guess=coffee_guess,
                                             score=session["score"],
                                             session=session["quiz_num"],
                                             number_of_questions=number_of_questions,
