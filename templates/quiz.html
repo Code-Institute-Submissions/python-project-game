@@ -5,10 +5,10 @@
         <div class="intro-text left-0 text-center bg-faded p-5 rounded">
             <h2 class="section-heading mb-4">
                 <p class="mb-3">Hello, {{ username }}. Let's coffee up!</p>
-                <span class="section-heading-lower">Question {{ session + 1 }} of {{ number_of_questions }}</span>
-                <span class="font-weight-light text-muted">Score: {{ score }} of {{ number_of_questions }}</span>
-                <p>Question: </p>
-                <p>{{ coffee_question }}</p>
+                <p class="section-heading-lower section-heading-lower-spiced">Question {{ session + 1 }} of {{ number_of_questions }}</p>
+                <p class="font-italic">Score: {{ score }} of {{ number_of_questions }}</p>
+                <h3>{{ coffee_question }}</h3>
+            </h2>
                 <!--#Trying to get image - START-->
                 {% if coffee_image %}
                 <div>
@@ -16,8 +16,7 @@
                 </div>
                 {% endif %}
                 <!--#Trying to get image - END-->
-            </h2>
-            
+
             <!--PENDING - Trying to get the "Try Again" collapsible button to 
             render when the guess is different to the correct answer-->
             
