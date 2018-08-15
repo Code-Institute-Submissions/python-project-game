@@ -166,7 +166,6 @@ def get_coffee_quiz():
 # PENDING - Changes need to be made as the program runs when testing which is 
 #unwanted. 
 
-
 if __name__ == "__main__":
     # game_loop()
     app.run(host=os.environ.get("IP"),

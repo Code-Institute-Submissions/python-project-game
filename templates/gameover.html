@@ -4,20 +4,18 @@
     <div class="container">
         <div class="intro-text left-0 text-center bg-faded p-5 rounded">
             <h2 class="section-heading mb-4">
-                <span class="section-heading-upper">Test your coffee knowledge</span>
+                <span class="section-heading-upper mb-4">Test your coffee knowledge</span>
                 <span class="section-heading-lower">The Big Coffee Quiz</span>
             </h2>
-            <p class="mb-3"> Well Done {{ username }}!</br>
-                Your score is: {{ score }}</p>
+            <h3 class="mb-4"> Well Done {{ username }}!</h3>
+            <h4 class="mb-5">Your score is: {{ score }}</h4>
 
-            <!--<form method="POST">-->
-            <!--    <label for="username">Username:</label>-->
-            <!--    <input type="text" id="username" name="username" required>-->
-            <!--    <div class="intro-button mx-auto">-->
-                    <!--Remember to link to the root, not to the .html template! -->
-            <!--        <button class="btn btn-primary" type="submit">Start Quiz!</button>-->
-            <!--    </div>-->
-            <!--</form>-->
+            <div class="intro-button mx-auto">
+                <!--Remember to link to the root, not to the .html template! -->
+                <a href="{{url_for('index')}}">
+                    <button class="btn btn-primary" type="submit">Play Again</button>
+                </a>
+            </div>
         </div>
     </div>
 </section>
