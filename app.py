@@ -132,13 +132,14 @@ def get_coffee_quiz():
                     #PENDING - Get the Flash to work
                     flash("Correct!")
 
-                    return render_template("gameover.html", username=session["username"],
-                                            coffee_question=coffee_question,
-                                            coffee_image=coffee_image,
-                                            coffee_answer=coffee_answer,
-                                            coffee_guess=coffee_guess,
-                                            score=session["score"],
-                                            mistake=mistake)
+                    # return render_template("gameover.html", username=session["username"],
+                    #                         coffee_question=coffee_question,
+                    #                         coffee_image=coffee_image,
+                    #                         coffee_answer=coffee_answer,
+                    #                         coffee_guess=coffee_guess,
+                    #                         score=session["score"],
+                    #                         mistake=mistake)
+                    return redirect(url_for('gameover'))
 
             else:
                 print("wrong!")
@@ -165,6 +166,19 @@ def get_coffee_quiz():
     
 # PENDING - Changes need to be made as the program runs when testing which is 
 #unwanted. 
+
+@app.route('/gameover')
+def gameover():
+    #No more points to "score"
+    session['score'] += 0
+    # # Because we don't want to be out of range, we don't increment session
+    # session['quiz_num'] += 0
+    return render_template("gameover.html", username=session["username"],
+                                            # coffee_question=coffee_question,
+                                            # coffee_image=coffee_image,
+                                            # coffee_answer=coffee_answer,
+                                            # coffee_guess=coffee_guess,
+                                            score=session["score"])
 
 if __name__ == "__main__":
     # game_loop()

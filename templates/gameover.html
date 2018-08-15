@@ -9,13 +9,16 @@
             </h2>
             <h3 class="mb-4"> Well Done {{ username }}!</h3>
             <h4 class="mb-5">Your score is: {{ score }}</h4>
-
+            <!-- Render High Scored and Top Players Names - START -->
+            <div class="mb-5">TOP SCORES</div>
+            <!-- Render High Scored and Top Players Names - END -->
+            <!-- Play Again Button -START -->
             <div class="intro-button mx-auto">
-                <!--Remember to link to the root, not to the .html template! -->
                 <a href="{{url_for('index')}}">
                     <button class="btn btn-primary" type="submit">Play Again</button>
                 </a>
             </div>
+            <!-- Play Again Button - END -->
         </div>
     </div>
 </section>
