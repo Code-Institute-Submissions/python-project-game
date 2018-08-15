@@ -9,39 +9,60 @@
                 <p class="font-italic">Score: {{ score }} of {{ number_of_questions }}</p>
                 <h3 class="mb-4">{{ coffee_question }}</h3>
             </h2>
-                <!--#Trying to get image - START-->
-                {% if coffee_image %}
-                <div>
-                    <img src="{{ url_for('static', filename=coffee_image) }}">
-                </div>
-                {% endif %}
-                <!--#Trying to get image - END-->
+            <!--#Get image - START-->
+            {% if coffee_image %}
+            <div>
+                <img src="{{ url_for('static', filename=coffee_image) }}">
+            </div>
+            {% endif %}
+            <!--#Get image - END-->
 
-            <!--PENDING - Trying to get the "Try Again" collapsible button to 
-            render when the guess is different to the correct answer-->
-            
             {% if mistake %}
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 mb-3 font-italic" id="wrong-answer"><i class="far fa-times-circle"></i> You said: <span class="font-weight-bold">{{coffee_guess}}</span>. You were wrong. <i class="far fa-times-circle"></i></div>
-                <div id="discover-answer" class="col-xs-12 col-sm-12">
-                    <button class="btn btn-primary discover-answer mb-4" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Click here to discover answer
-                    </button>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body mb-3">
-                            <p>The answer to this question is: <span class="font-weight-bold">{{coffee_answer}}</span></p>
+            <!-- Trying out a Modal - START -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Wrong Answer!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Correct Answer - START -->
+                            <div class="col-xs-12 col-sm-12 mb-3 font-italic" id="wrong-answer">You said: <span class="font-weight-bold">{{coffee_guess}}</span>. You were wrong.</div>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    <p>The answer to this question is: <span class="font-weight-bold">{{coffee_answer}}</span></p>
+                                </div>
+                            </div>
+                            <!-- Correct Answer - END -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div id="discover-answer">
+                                <button class="btn btn-primary discover-answer" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        Click here to discover answer
+                                    </button>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <p>The answer to this question is: <span class="font-weight-bold">{{coffee_answer}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Trying out a Modal - END -->
             {% endif %}
-            
+
             <form method="POST" action="/quiz">
                 <label for="answer" class="font-weight-bold mb-3">Your answer:</label>
                 <input type="text" id="answer" name="answer" required>
                 <div class="intro-button mx-auto">
                     <!--Remember to link to the root, not to the .html template! -->
-                    <button class="btn btn-primary" type="submit">Submit your answer</button>
+                    <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#exampleModal">Submit your answer</button>
                 </div>
             </form>
         </div>
