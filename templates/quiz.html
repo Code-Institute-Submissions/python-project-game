@@ -11,14 +11,14 @@
             </h2>
             <!--#Get image - START-->
             {% if coffee_image %}
-            <div>
+            <div class="mb-4">
                 <img src="{{ url_for('static', filename=coffee_image) }}">
             </div>
             {% endif %}
             <!--#Get image - END-->
 
             {% if mistake %}
-            <!-- Trying out a Modal - START -->
+            <!-- Modal - START -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Trying out a Modal - END -->
+            <!-- Modal - END -->
             {% endif %}
 
             <form method="POST" action="/quiz">
