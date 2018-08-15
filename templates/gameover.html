@@ -10,12 +10,41 @@
             <h3 class="mb-4"> Well Done {{ username }}!</h3>
             <h4 class="mb-5">Your score is: {{ score }}</h4>
             <!-- Render High Scored and Top Players Names - START -->
-            <div class="mb-5">TOP SCORES</div>
+            <div class="mb- section-heading"><span class="section-heading-lower mb-4"><i class="fas fa-coffee"></i>  TOP SCORES  <i class="fas fa-coffee"></i></span></div>
+            <div class="row mb-4">
+                <div class="col-md-2 offset-md-1">
+                    <h5>1st</h5>
+                    <p><strong>Username:</strong> {{username}}</p>
+                    <p><strong><em>Score:</strong> {{score}}</em></p>
+                </div>
+                <div class="col-md-2">
+                    <h5>2nd</h5>
+                    <p><strong>Username:</strong> {{username}}</p>
+                    <p><strong><em>Score:</strong> {{score}}</em></p>
+                </div>
+                <div class="col-md-2">
+                    <h5>3rd</h5>
+                    <p><strong>Username:</strong> {{username}}</p>
+                    <p><strong><em>Score:</strong> {{score}}</em></p>
+                </div>
+                <div class="col-md-2">
+                    <h5>4th</h5>
+                    <p><strong>Username:</strong> {{username}}</p>
+                    <p><strong><em>Score:</strong> {{score}}</em></p>
+                </div>
+                <div class="col-md-2">
+                    <h5>5th</h5>
+                    <p><strong>Username:</strong> {{username}}</p>
+                    <p><strong><em>Score:</strong> {{score}}</em></p>
+                </div>
+            </div>
+            
+            
             <!-- Render High Scored and Top Players Names - END -->
             <!-- Play Again Button -START -->
             <div class="intro-button mx-auto">
-                <a href="{{url_for('index')}}">
-                    <button class="btn btn-primary" type="submit">Play Again</button>
+                <a class="clean-link" href="{{url_for('index')}}">
+                    <button class="btn btn-primary" id="longo-button" type="submit">Play Again</button>
                 </a>
             </div>
             <!-- Play Again Button - END -->

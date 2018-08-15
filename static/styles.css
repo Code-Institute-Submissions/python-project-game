@@ -8,6 +8,10 @@
     font-size: x-large;
 }
 
+#longo-button {
+    width: 100%!important;
+}
+
 /* FOOTER */
 
 #footer-bespoke {
