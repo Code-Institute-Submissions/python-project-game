@@ -83,6 +83,12 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 
 ## Credits
+The approach and structure of the functionality to get and render the high scores was 
+adapted from code shared with me by my mentor [git repo here](https://github.com/ckz8780/ci-pp-milestone-riddlemethis/blob/master/run.py).</br>
+While the names and details are different, and we work to write them together, </br>
+it's worth noting that the code was used as a guide after several attempts to </br>
+different, failed approaches.</br>
+
 
 ### Content
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)

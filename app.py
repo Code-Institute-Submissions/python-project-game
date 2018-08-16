@@ -35,6 +35,36 @@ def get_coffee_answers(placeholderForRiddles, i):
     return placeholderAnswer
 
 
+# Getting the top scores - START
+def add_top_score(username, total_score):
+    """This function will open the top-scores file and add a player's username
+    and score if they reached the top 5 highest scores"""
+    top_players = get_top_players()
+    with open('data/top_scores.txt', 'a+') as top_scores:
+        if not (username, total_score) in top_players:
+            top_scores.write('\n{}:{}'.format(str(username), str(total_score)))
+            
+def get_top_players():
+    # you should be able to access this here: print(session['score'])
+    # Append this player's score to the file with add_top_score()
+    with open('data/top_scores.txt', 'r') as top_scores:
+        top_players = []
+        for line in top_scores.readlines()[1:]:
+            top_players.append(line)
+        
+        sorted_top_players = []
+        for player in top_players:
+            tupe = (player.split(':')[0].strip(), int(player.split(':')[1].strip())) # tupe = (username, score)
+            sorted_top_players.append(tupe)
+            
+        # Sort top_players on the 2nd elem of the tuple, reverse the sort, then return the top 5
+        # Another way: 
+        # sorted_final = sorted(sorted_top_players, key=lambda x: x[1]) # key = def function(x): return x[1]
+        
+        return sorted(sorted_top_players, key=lambda x: x[1])[::-1][:5]
+    
+# Getting the top scores - END
+
 #Now we start writing our routes
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -122,8 +152,8 @@ def get_coffee_quiz():
                     print("right!")
                     #Add points to "score"
                     session['score'] += 1
-                    # Because we don't want to be out of range, we don't increment session
-                    session['quiz_num'] += 0
+                    ## Because we don't want to be out of range, we don't increment session
+                    # session['quiz_num'] += 0
                     
                     # We get the last question and its answer
                     coffee_question = get_coffee_questions(riddles, session['quiz_num'])
@@ -162,12 +192,15 @@ def gameover():
     session['score'] += 0
     # # Because we don't want to be out of range, we don't increment session
     # session['quiz_num'] += 0
+    add_top_score(session['username'], session['score'])
+    top_players = get_top_players()
     return render_template("gameover.html", username=session["username"],
                                             # coffee_question=coffee_question,
                                             # coffee_image=coffee_image,
                                             # coffee_answer=coffee_answer,
                                             # coffee_guess=coffee_guess,
-                                            score=session["score"])
+                                            score=session["score"],
+                                            top_players=top_players)
 
 if __name__ == "__main__":
     # game_loop()
