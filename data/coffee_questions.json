@@ -68,7 +68,7 @@
     {
         "question": "12. What type of coffee drink follows the recipe below...",
         "image": "images/coffee-type-question-chocolate.png",
-        "answer": "cafe mocha",
+        "answer": "mocha",
         "url": "question-twelve"
     }
 ]

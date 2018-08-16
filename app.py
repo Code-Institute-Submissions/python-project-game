@@ -131,14 +131,6 @@ def get_coffee_quiz():
                     
                     #PENDING - Get the Flash to work
                     flash("Correct!")
-
-                    # return render_template("gameover.html", username=session["username"],
-                    #                         coffee_question=coffee_question,
-                    #                         coffee_image=coffee_image,
-                    #                         coffee_answer=coffee_answer,
-                    #                         coffee_guess=coffee_guess,
-                    #                         score=session["score"],
-                    #                         mistake=mistake)
                     return redirect(url_for('gameover'))
 
             else:
@@ -179,6 +171,10 @@ def gameover():
                                             # coffee_answer=coffee_answer,
                                             # coffee_guess=coffee_guess,
                                             score=session["score"])
+
+# Modal experiment - START
+
+# Modal experiment - END
 
 if __name__ == "__main__":
     # game_loop()
