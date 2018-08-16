@@ -20,14 +20,12 @@ def get_coffee_questions(placeholderForRiddles, i):
     placeholderQuestion = placeholderForRiddles[i]["question"]
     return placeholderQuestion
 
-#Trying to get image - START
 def get_coffee_images(placeholderForRiddles, i):
     """
     This function searches for and returns images for the quiz 
     """
     placeholderImage = placeholderForRiddles[i]["image"]
     return placeholderImage
-#Trying to get image - END
 
 def get_coffee_answers(placeholderForRiddles, i):
     """
@@ -62,13 +60,17 @@ def get_coffee_quiz():
     #Trying to get image - START
     coffee_image = get_coffee_images(riddles, session['quiz_num'])
     #Trying to get image - END
-    coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower() # I'd actually put these in the GET request, noting the above ^^^ and get rid of "i"
+    coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower() # I'd actually put these in the GET request, 
+    # noting the above ^^^ and get rid of "i"
+    
     #Calling question and answer functions - END
+    
     
     #Now we get the number of riddles in our quiz
     number_of_questions = len(riddles)
     
     if request.method == "GET":
+        
         # print("I am here in the 'if GET' statement")
         return render_template("quiz.html", coffee_question=coffee_question,
                                             coffee_image=coffee_image,
@@ -149,11 +151,6 @@ def get_coffee_quiz():
                                             mistake=mistake)
                 
         #Trying to pass the answer and check if correct - END
-
-    
-    #PENDING - When a guess is wrong, create a collapse that lets the user 
-    #choose to see the correct answer or keep trying. Link to the Bootstrap 
-    #Collapse in the readme
     
     
 # PENDING - Changes need to be made as the program runs when testing which is 
@@ -171,10 +168,6 @@ def gameover():
                                             # coffee_answer=coffee_answer,
                                             # coffee_guess=coffee_guess,
                                             score=session["score"])
-
-# Modal experiment - START
-
-# Modal experiment - END
 
 if __name__ == "__main__":
     # game_loop()

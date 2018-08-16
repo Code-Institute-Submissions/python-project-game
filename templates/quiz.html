@@ -24,8 +24,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Wrong Answer!</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-modal">
+                                <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
                             </button>
                         </div>
                         <div class="modal-body">
@@ -57,7 +57,7 @@
                 <input type="text" id="answer" name="answer" required>
                 <div class="intro-button mx-auto">
                     <!--Remember to link to the root, not to the .html template! -->
-                    <button id="myBtn" class="btn btn-primary" type="submit">Submit your answer</button>
+                    <button id="openModal" class="btn btn-primary" type="submit">Submit your answer</button>
                 </div>
             </form>
         </div>
@@ -66,23 +66,23 @@
 
 <script>
 // my vars - START
-
-//Get the answer
 var answer = '{{coffee_answer}}';
-console.log(answer);
+// console.log(answer);
 var guess = '{{coffee_guess}}';
-console.log(guess);
-
+// console.log(guess);
+var mistake = '{{mistake}}';
+console.log(mistake);
 // my vars - END
+
 
 // Get the modal
 var modal = document.getElementById('coffeModal');
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var btn = document.getElementById("openModal");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementById('close-modal');
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
@@ -100,5 +100,6 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 };
+ 
 </script>
 {% endblock %}
