@@ -18,13 +18,13 @@
             <!--#Get image - END-->
 
             {% if mistake %}
-            <div class="row">
-                <div class="col-xs-12 offset-sm-2 col-sm-5 mb-3 font-italic" id="wrong-answer">You said: <span class="font-weight-bold">{{coffee_guess}}</span>. You were wrong.</div>
-                <div id="discover-answer" class="col-xs-12 col-sm-4">
-                    <button class="btn btn-primary discover-answer mb-4" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <div class="col-xs-12 mb-3 font-italic" id="wrong-answer">
+                You said: <span class="font-weight-bold">{{coffee_guess}}</span>. That is incorrect.
+            </div>
+            <div id="discover-answer" class="col-xs-12">
+                <button class="btn btn-primary discover-answer mb-4" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     Click here to discover answer
-                    </button>
-                </div>
+                </button>
             </div>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body mb-3">
