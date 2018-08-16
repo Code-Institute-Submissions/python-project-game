@@ -17,47 +17,32 @@
             {% endif %}
             <!--#Get image - END-->
 
-            <!--{% if mistake %}-->
-            <!-- Modal - START -->
-            <div id="coffeModal" class="modal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Wrong Answer!</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-modal">
-                                <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Correct Answer - START -->
-                            <div class="col-xs-12 col-sm-12 mb-3 font-italic" id="wrong-answer">You said: <span class="font-weight-bold">{{coffee_guess}}</span>. You were wrong.</div>
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body">
-                                    <p>The answer to this question is: <span class="font-weight-bold">{{coffee_answer}}</span></p>
-                                </div>
-                            </div>
-                            <!-- Correct Answer - END -->
-                        </div>
-                        <div class="modal-footer">
-                            <div id="discover-answer">
-                                <button class="btn btn-primary discover-answer" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                        Click here to discover answer
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            {% if mistake %}
+            <div class="row">
+                <div class="col-xs-12 offset-sm-2 col-sm-5 mb-3 font-italic" id="wrong-answer">You said: <span class="font-weight-bold">{{coffee_guess}}</span>. You were wrong.</div>
+                <div id="discover-answer" class="col-xs-12 col-sm-4">
+                    <button class="btn btn-primary discover-answer mb-4" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Click here to discover answer
+                    </button>
                 </div>
             </div>
-            <!-- Modal - END -->
-            <!--{% endif %}-->
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body mb-3">
+                    <p>The answer to this question is: <span class="font-weight-bold">{{coffee_answer}}</span></p>
+                </div>
+            </div>
+            {% endif %}
 
             <form method="POST" action="/quiz">
-            <!--<form>-->
-                <label for="answer" class="font-weight-bold mb-3">Your answer:</label>
-                <input type="text" id="answer" name="answer" required>
+                <div class="row">
+                    <div class="col-xs-12 offset-sm-4 col-sm-4">
+                        <label for="answer" class="font-weight-bold mb-3">Your answer:</label>
+                        <input type="text" id="answer" name="answer" required>
+                    </div>
+                </div>
                 <div class="intro-button mx-auto">
                     <!--Remember to link to the root, not to the .html template! -->
-                    <button id="openModal" class="btn btn-primary" type="submit">Submit your answer</button>
+                    <button class="btn btn-primary" type="submit">Submit your answer</button>
                     <!--<button onclick="modalFunction()" class="btn btn-primary" type="submit">Submit your answer</button>-->
                 </div>
             </form>
@@ -66,59 +51,59 @@
 </section>
 
 
-<script>
-// my vars - START
-var answer = '{{coffee_answer}}';
-console.log(answer);
-var guess = '{{coffee_guess}}';
-console.log(guess);
-// var mistake = '{{mistake}}';
-// console.log(mistake);
-// my vars - END
+<!--<script>-->
+<!--// my vars - START-->
+<!--var answer = '{{coffee_answer}}';-->
+<!--console.log(answer);-->
+<!--var guess = '{{coffee_guess}}';-->
+<!--console.log(guess);-->
+<!--// var mistake = '{{mistake}}';-->
+<!--// console.log(mistake);-->
+<!--// my vars - END-->
 
 
-// Get the modal
-var modal = document.getElementById('coffeModal');
+<!--// Get the modal-->
+<!--var modal = document.getElementById('coffeModal');-->
 
-// Get the button that opens the modal
-var btn = document.getElementById("openModal");
+<!--// Get the button that opens the modal-->
+<!--var btn = document.getElementById("openModal");-->
 
-// Get the <span> element that closes the modal
-var span = document.getElementById('close-modal');
+<!--// Get the <span> element that closes the modal-->
+<!--var span = document.getElementById('close-modal');-->
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-};
+<!--// When the user clicks the button, open the modal -->
+<!--btn.onclick = function() {-->
+<!--    modal.style.display = "block";-->
+<!--};-->
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-};
+<!--// When the user clicks on <span> (x), close the modal-->
+<!--span.onclick = function() {-->
+<!--    modal.style.display = "none";-->
+<!--};-->
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-};
- 
-</script>
+<!--// When the user clicks anywhere outside of the modal, close it-->
+<!--window.onclick = function(event) {-->
+<!--    if (event.target == modal) {-->
+<!--        modal.style.display = "none";-->
+<!--    }-->
+<!--};-->
+
+<!--</script>-->
 
 <!--Experiment -->
-// <script>
-//     var mistake = '{{mistake}}';
-//     console.log(mistake);
-    
-//     if (mistake == "True") {
-//       function modalFunction() {
-        // alert("oops!");
-//         }
-//     } else {
-//         function modalFunction() {
-//         alert('yay!');
-//         }
-//     }
-// </script>
+<!--// <script>-->
+<!--//     var mistake = '{{mistake}}';-->
+<!--//     console.log(mistake);-->
+
+<!--//     if (mistake == "True") {-->
+<!--//       function modalFunction() {-->
+<!--        // alert("oops!");-->
+<!--//         }-->
+<!--//     } else {-->
+<!--//         function modalFunction() {-->
+<!--//         alert('yay!');-->
+<!--//         }-->
+<!--//     }-->
+<!--// </script>-->
 <!--Experiment -->
 {% endblock %}
