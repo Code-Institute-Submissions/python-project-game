@@ -57,12 +57,14 @@
                 <input type="text" id="answer" name="answer" required>
                 <div class="intro-button mx-auto">
                     <!--Remember to link to the root, not to the .html template! -->
-                    <button id="openModal" class="btn btn-primary" type="submit">Submit your answer</button>
+                    <!--<button id="openModal" class="btn btn-primary" type="submit">Submit your answer</button>-->
+                    <button onclick="myFunction()" class="btn btn-primary" type="submit">Submit your answer</button>
                 </div>
             </form>
         </div>
     </div>
 </section>
+
 
 <script>
 // my vars - START
@@ -70,8 +72,8 @@ var answer = '{{coffee_answer}}';
 // console.log(answer);
 var guess = '{{coffee_guess}}';
 // console.log(guess);
-var mistake = '{{mistake}}';
-console.log(mistake);
+// var mistake = '{{mistake}}';
+// console.log(mistake);
 // my vars - END
 
 
@@ -102,4 +104,21 @@ window.onclick = function(event) {
 };
  
 </script>
+
+<!--Experiment -->
+<script>
+    var mistake = '{{mistake}}';
+    // console.log(mistake);
+    
+    if (mistake == "True") {
+       function myFunction() {
+        alert("oops!");
+        }
+    } else {
+        function myFunction() {
+        alert('yay!');
+        }
+    }
+</script>
+<!--Experiment -->
 {% endblock %}
