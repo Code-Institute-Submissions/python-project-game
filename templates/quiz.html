@@ -12,7 +12,7 @@
             <!--#Get image - START-->
             {% if coffee_image %}
                 <div class="mb-4">
-                    <img src="{{ url_for('static', filename=coffee_image) }}">
+                    <img id="image-question" src="{{ url_for('static', filename=coffee_image) }}">
                 </div>
             {% endif %}
             <!--#Get image - END-->
@@ -22,8 +22,9 @@
                     You said: <span class="font-weight-bold">{{coffee_guess}}</span>. That is incorrect.
                 </div>
                 <div id="discover-answer" class="col-xs-12">
-                    <button class="btn btn-primary mb-4" id="discover-answer" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Click here to discover answer
+                    <button class="btn btn-primary mb-4" id="discover-answer-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <p id="discover-answer-text">Click here to discover answer</br>
+                        (you won't get points if you look!)</p>
                     </button>
                 </div>
                 <div class="collapse" id="collapseExample">
@@ -56,7 +57,7 @@
 {% block script %}
     <script>
         $( document ).ready(function() {
-           $('#discover-answer').on('click', function() {
+           $('#discover-answer-button').on('click', function() {
                 console.log($('#answer').attr('name'));
                 $('#answer').attr('name', 'solution');
                 console.log($('#answer').attr('name'));

@@ -50,25 +50,51 @@ In this section, you should mention all of the languages, frameworks, libraries,
 
 ## Testing
 
-Manual testing included numerous uses of the print() methos to confirm that the 
+Manual testing included numerous uses of the print() method to confirm that the 
 correct question/answer/image was being passed to the page.
 The program was also tested and adjusted as new functionalities were added.
 
-For any scenarios that have not been automated, test the user stories manually 
-and provide as much detail as is relevant. 
-A particularly useful form for describing your testing process is via scenarios, such as:
+Examples of user stories I aimed to comply with follow:
 
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
+##### As a < coffee lover >, I want < to find out more about coffee > so that < I can understand it better >.
+The level of dificulty and nature of the questions is very varied. from general to professional.
 
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
+##### As a < barista in training >, I want < to keep track of my progress and compare with my coworkers > so that < I can improve with time >.
+Users high scores are stored and the top 5 players are displayed at the end of the game. The whole list
+is stored in a .txt file that shows all the different scoring from different users.
 
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
+##### As a < person taking the quiz >, I want < to be able to see the solution > so that < I don't get stuck in a question I don't know the answer to >.
+After every failed question, a button with the opportunity to see the solution will appear.
+It will clearly state that no points will be awarded if you look at the solution, so use it wisely!
 
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+Another way this project was tested was by acting like a user and moving around
+the quiz. Below, some of the activities underwent:
+
+- Introducing a username: The app's homepage clearly has a space to input your username and start the quiz.
+- Answering a question incorrectly: Once the quiz begins, I answered questions incorrectly, expecting to
+see a message with the wrong guess appear, along with the button allowing you to see the solution.
+- Answering a question correctly after a failed attempt but without looking at the solution: This lead
+to the normal success response, the score was incremented by 1 point and we moved to the next question.
+- Answering a question correctly after a failed attempt and after looking at the solution: This lead
+to the progression to the next question, but no points were added to the score.
+- Answering a question incorrectly after a failed attempt: this lead to the same scenario as the first time
+and that didn't changed until the qustion was answered correctly.
+- Answering a question correctly the first time: This lead to the score being incremented by 1 and we
+moved to the next question.
+
+
+##### Different screen sizes:
+
+- The quiz is responsive and works best on a large to medium screen, horizontally displayed.
+- On smaller screens, it works well enough, but there is a small amount of scrolling.
+- The look and feel remains the same in different sizes, trying to evoke the theme, which is coffee.
+- In very small screens, elements that are displayed horizontally (such as top scores), change to vertical, for ease of read.
+
+##### Bugs and Issues
+- At an early stage, there was an issue getting the quiz to recognise the most recent guess.</br> 
+It was taking the one before it instead. By fixing the order in which the functions were called, this was eventually sorted.
+- After testing manually, a way of "cheating" the test was found, if a user finishes the quiz and goes back,</br>
+they can answer the last question again, getting more points and repeating even until surpassing the number of questions.
 
 ## Deployment
 
