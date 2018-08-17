@@ -11,27 +11,27 @@
             </h2>
             <!--#Get image - START-->
             {% if coffee_image %}
-                <div class="mb-4">
-                    <img id="image-question" src="{{ url_for('static', filename=coffee_image) }}">
-                </div>
+            <div class="mb-4">
+                <img id="image-question" src="{{ url_for('static', filename=coffee_image) }}">
+            </div>
             {% endif %}
             <!--#Get image - END-->
 
             {% if mistake %}
-                <div class="col-xs-12 mb-3 font-italic" id="wrong-answer">
-                    You said: <span class="font-weight-bold">{{coffee_guess}}</span>. That is incorrect.
-                </div>
-                <div id="discover-answer" class="col-xs-12">
-                    <button class="btn btn-primary mb-4" id="discover-answer-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <div class="col-xs-12 mb-3 font-italic" id="wrong-answer">
+                You said: <span class="font-weight-bold">{{coffee_guess}}</span>. That is incorrect.
+            </div>
+            <div id="discover-answer" class="col-xs-12">
+                <button class="btn btn-primary mb-4" id="discover-answer-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         <p id="discover-answer-text">Click here to discover answer</br>
                         (you won't get points if you look!)</p>
                     </button>
+            </div>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body mb-3">
+                    <p>The answer to this question is: <span class="font-weight-bold">{{coffee_answer}}</span></p>
                 </div>
-                <div class="collapse" id="collapseExample">
-                    <div class="card card-body mb-3">
-                        <p>The answer to this question is: <span class="font-weight-bold">{{coffee_answer}}</span></p>
-                    </div>
-                </div>
+            </div>
             {% endif %}
 
             <form method="POST" action="/quiz">
@@ -52,16 +52,26 @@
 </section>
 
 
-{% endblock %}
-
-{% block script %}
-    <script>
-        $( document ).ready(function() {
-           $('#discover-answer-button').on('click', function() {
-                console.log($('#answer').attr('name'));
-                $('#answer').attr('name', 'solution');
-                console.log($('#answer').attr('name'));
-           });
+{% endblock %} {% block script %}
+<script>
+    $(document).ready(function() {
+        $('#discover-answer-button').on('click', function() {
+            console.log($('#answer').attr('name'));
+            $('#answer').attr('name', 'solution');
+            console.log($('#answer').attr('name'));
         });
-    </script>
+        //   Experiment to prevent cheating by going back in the browser - START
+        if (window.history && window.history.pushState) {
+
+            window.history.pushState('forward', null, './#forward');
+
+            $(window).on('popstate', function() {
+                alert('Back button was pressed.');
+            });
+
+        }
+    }
+    //   Experiment to prevent cheating by going back in the browser - END
+    });
+</script>
 {% endblock %}
