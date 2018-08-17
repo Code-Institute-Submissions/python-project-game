@@ -1,13 +1,10 @@
 username:total_score
 chris:5
-gaby:12
 ana:3
 andy:11
 mary:2
 luis:5
-gabriela:10
-gaby:13
 gaby:9
-gaby:11
 tony:12
 kimi:7
+gaby:12
