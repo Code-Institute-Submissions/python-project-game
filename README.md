@@ -93,8 +93,13 @@ moved to the next question.
 ##### Bugs and Issues
 - At an early stage, there was an issue getting the quiz to recognise the most recent guess.</br> 
 It was taking the one before it instead. By fixing the order in which the functions were called, this was eventually sorted.
-- After testing manually, a way of "cheating" the test was found, if a user finishes the quiz and goes back,</br>
-they can answer the last question again, getting more points and repeating even until surpassing the number of questions.
+- Cheating at the end: After testing, it was clear that a user could finish the game and go back to the</br>
+last question of the quiz to harvest points. This was solved by adding the boolean session['end'] that redirected attempts</br>
+to go back to the quiz to the gameover page once the session had ended.
+- Cheating the button: As it was originally written, a user that clicked the button for a clue would get zero</br>
+point for answering the question. However, users could see the clue, answer incorrectly for zero points</br>
+and then answer correctly on a fresh question (same question!), therefore seeing the solution with no penalty.</by>
+This was fixed by giving a cost of one point off your score if you click to see the solution.
 
 ## Deployment
 
@@ -114,6 +119,8 @@ adapted from code shared with me by my mentor [git repo here](https://github.com
 While the names and details are different, and we work to write them together, </br>
 it's worth noting that the code was used as a guide after several attempts to </br>
 different, failed approaches.</br>
+I also received help via slack through the practical-python chat.</br>
+User Andrew Carton suggested a way to redirect users once the session is over, to prevent cheating by hitting back after the game is over.
 
 
 ### Content

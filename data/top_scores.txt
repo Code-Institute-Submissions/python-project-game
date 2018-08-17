@@ -9,3 +9,5 @@ gabriela:10
 gaby:13
 gaby:9
 gaby:11
+tony:12
+kimi:7
