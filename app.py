@@ -106,20 +106,16 @@ def get_coffee_quiz():
     if session['end']:
     	top_players = get_top_players()
         return render_template("gameover.html", username=session["username"],
-                                                score=session["score"],
-                                                top_players=top_players)
+        score=session["score"], top_players=top_players)
 
     if request.method == "GET":
 
         # print("I am here in the 'if GET' statement")
-        return render_template("quiz.html", coffee_question=coffee_question,
-                                            coffee_image=coffee_image,
-                                            coffee_answer=coffee_answer,
-                                            username=session["username"],
-                                            score=session["score"],
-                                            session=session["quiz_num"],
-                                            number_of_questions=number_of_questions,
-                                            end=session['end'])
+        return render_template("quiz.html", coffee_question=coffee_question, 
+        coffee_image=coffee_image, coffee_answer=coffee_answer,
+        username=session["username"], score=session["score"],
+        session=session["quiz_num"], number_of_questions=number_of_questions,
+        end=session['end'])
                                             
     #Trying to pass the answer and check if correct - START
     elif request.method == "POST":
@@ -153,15 +149,11 @@ def get_coffee_quiz():
                         #PENDING - Get the Flash to work
                         flash("Correct!")
                         return render_template("quiz.html", username=session["username"],
-                                                    coffee_question=coffee_question,
-                                                    coffee_image=coffee_image,
-                                                    coffee_answer=coffee_answer,
-                                                    coffee_guess=coffee_guess,
-                                                    score=session["score"],
-                                                    session=session["quiz_num"],
-                                                    number_of_questions=number_of_questions,
-                                                    mistake=mistake,
-                                                    end=session['end'])
+                        coffee_question=coffee_question, coffee_image=coffee_image,
+                        coffee_answer=coffee_answer, coffee_guess=coffee_guess,
+                        score=session["score"], session=session["quiz_num"],
+                        number_of_questions=number_of_questions, mistake=mistake,
+                        end=session['end'])
     
                     elif session['quiz_num'] == len(riddles) - 1:
                         #If it is correct, we add 1 to our score and print some feedback
@@ -185,15 +177,11 @@ def get_coffee_quiz():
                     mistake = True
                     flash("Wrong!")
                     return render_template("quiz.html", username=session["username"],
-                                                coffee_question=coffee_question,
-                                                coffee_image=coffee_image,
-                                                coffee_answer=coffee_answer,
-                                                coffee_guess=coffee_guess,
-                                                score=session["score"],
-                                                session=session["quiz_num"],
-                                                number_of_questions=number_of_questions,
-                                                mistake=mistake,
-                                                end=session['end'])
+                    coffee_question=coffee_question, coffee_image=coffee_image,
+                    coffee_answer=coffee_answer, coffee_guess=coffee_guess,
+                    score=session["score"], session=session["quiz_num"],
+                    number_of_questions=number_of_questions, mistake=mistake,
+                    end=session['end'])
 
         #Trying to pass the answer and check if correct - END
             if request.form.keys()[0] == 'solution':
@@ -224,15 +212,11 @@ def get_coffee_quiz():
                         #PENDING - Get the Flash to work
                         flash("Correct!")
                         return render_template("quiz.html", username=session["username"],
-                                                    coffee_question=coffee_question,
-                                                    coffee_image=coffee_image,
-                                                    coffee_answer=coffee_answer,
-                                                    coffee_guess=coffee_guess,
-                                                    score=session["score"],
-                                                    session=session["quiz_num"],
-                                                    number_of_questions=number_of_questions,
-                                                    mistake=mistake,
-                                                    end=session['end'])
+                        coffee_question=coffee_question, coffee_image=coffee_image, 
+                        coffee_answer=coffee_answer, coffee_guess=coffee_guess,
+                        score=session["score"], session=session["quiz_num"],
+                        number_of_questions=number_of_questions,  mistake=mistake,
+                        end=session['end'])
     
                     elif session['quiz_num'] == len(riddles) - 1:
                         #If it is correct, we add 1 to our score and print some feedback
@@ -258,15 +242,11 @@ def get_coffee_quiz():
                     mistake = True
                     flash("Wrong!")
                     return render_template("quiz.html", username=session["username"],
-                                                coffee_question=coffee_question,
-                                                coffee_image=coffee_image,
-                                                coffee_answer=coffee_answer,
-                                                coffee_guess=coffee_guess,
-                                                score=session["score"],
-                                                session=session["quiz_num"],
-                                                number_of_questions=number_of_questions,
-                                                mistake=mistake,
-                                                end=session['end'])
+                    coffee_question=coffee_question, coffee_image=coffee_image,
+                    coffee_answer=coffee_answer, coffee_guess=coffee_guess,
+                    score=session["score"], session=session["quiz_num"],
+                    number_of_questions=number_of_questions, mistake=mistake,
+                    end=session['end'])
 
 
 # PENDING - Changes need to be made as the program runs when testing which is
@@ -284,13 +264,7 @@ def gameover():
     add_top_score(session['username'], session['score'])
     top_players = get_top_players()
     return render_template("gameover.html", username=session["username"],
-                                            # coffee_question=coffee_question,
-                                            # coffee_image=coffee_image,
-                                            # coffee_answer=coffee_answer,
-                                            # coffee_guess=coffee_guess,
-                                            score=session["score"],
-                                            top_players=top_players,
-                                            end=session['end'])
+    score=session["score"], top_players=top_players, end=session['end'])
 
 if __name__ == "__main__":
     # game_loop()
