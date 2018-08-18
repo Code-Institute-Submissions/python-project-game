@@ -129,7 +129,7 @@ def get_coffee_quiz():
     # Trying to pass the answer and check if correct - START
     elif request.method == "POST":
         if request.form:
-            flag = request.form.keys()
+            flag = list(request.form.keys())
             # if request.form.keys()[0] == 'answer':
             if flag[0] == 'answer':
                 print('The request was answer')
