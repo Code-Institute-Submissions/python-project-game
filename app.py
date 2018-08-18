@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, render_template, request, flash, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for
 
 app = Flask(__name__)
 app.secret_key = "coffee_secret"
@@ -155,8 +155,6 @@ def get_coffee_quiz():
 
                         print("session['quiz_num'] is: ", session['quiz_num'])
 
-                        # PENDING - Get the Flash to work
-                        flash("Correct!")
                         return render_template("quiz.html",
                                                username=session["username"],
                                                coffee_question=coffee_question,
@@ -181,15 +179,12 @@ def get_coffee_quiz():
                         coffee_image = get_coffee_images(riddles, session['quiz_num'])
                         coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
                         print("Last question, we now go to game over page")
-                        # PENDING - Get the Flash to work
-                        flash("Correct!")
                         return redirect(url_for('gameover'))
 
                 else:
                     print("wrong!")
                     print("coffee_guess: ", coffee_guess)
                     mistake = True
-                    flash("Wrong!")
                     return render_template("quiz.html",
                                            username=session["username"],
                                            coffee_question=coffee_question,
@@ -228,8 +223,6 @@ def get_coffee_quiz():
 
                         print("session['quiz_num'] is: ", session['quiz_num'])
 
-                        # PENDING - Get the Flash to work
-                        flash("Correct!")
                         return render_template("quiz.html",
                                                username=session["username"],
                                                coffee_question=coffee_question,
@@ -255,16 +248,12 @@ def get_coffee_quiz():
                         coffee_image = get_coffee_images(riddles, session['quiz_num'])
                         coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
                         print("Last question, we now go to game over page")
-
-                        # PENDING - Get the Flash to work
-                        flash("Correct!")
                         return redirect(url_for('gameover'))
 
                 else:
                     print("wrong!")
                     print("coffee_guess: ", coffee_guess)
                     mistake = True
-                    flash("Wrong!")
                     return render_template("quiz.html",
                                            username=session["username"],
                                            coffee_question=coffee_question,
