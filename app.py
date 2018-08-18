@@ -130,7 +130,6 @@ def get_coffee_quiz():
     elif request.method == "POST":
         if request.form:
             flag = list(request.form.keys())
-            # if request.form.keys()[0] == 'answer':
             if flag[0] == 'answer':
                 print('The request was answer')
                 # print('request.form is:', request.form)
@@ -197,9 +196,12 @@ def get_coffee_quiz():
                                            number_of_questions=number_of_questions,
                                            mistake=mistake,
                                            end=session['end'])
-
         # Trying to pass the answer and check if correct - END
-            if request.form.keys()[0] == 'solution':
+        
+            flag = list(request.form.keys())
+            # if request.form.keys()[0] == 'solution':
+            if flag[0] == 'solution':
+                print('The request was solution')
                 coffee_guess = request.form['solution'].lower()
                 mistake = False
                 # We'll substract one point if 'paid' to see the solution
