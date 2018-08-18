@@ -130,7 +130,8 @@ def get_coffee_quiz():
     elif request.method == "POST":
         if request.form:
             flag = request.form.keys()
-            if request.form.keys()[0] == 'answer':
+            # if request.form.keys()[0] == 'answer':
+            if flag[0] == 'answer':
                 print('The request was answer')
                 # print('request.form is:', request.form)
                 # The guess would equal the user's input
