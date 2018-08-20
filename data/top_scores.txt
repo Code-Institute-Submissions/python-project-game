@@ -10,3 +10,4 @@ kimi:7
 gaby:12
 pepi:12
 pepperina:10
+tony:2

@@ -103,14 +103,17 @@ This was fixed by giving a cost of one point off your score if you click to see 
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+Process to deploy the project to a hosting platform:
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
+This project was deployed on Heroku under the name of [python-project-game](https://python-project-game.herokuapp.com/).
+Both the deployed project on Heroku and the project ran from Cloud9 look identycal and behave identically.
+- Different values for environment variables: 
+Config Vars --> IP = 0.0.0.0, PORT = 5000
+app.secret_key = "coffee_secret"
+app.url_map.strict_slashes = False
 
-In addition, if it is not obvious, you should also describe how to run your code locally.
+- Separate git branch: Push to Heroku --> $ git push heroku master
+
 
 
 ## Credits
