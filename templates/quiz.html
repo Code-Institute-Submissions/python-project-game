@@ -3,12 +3,12 @@
 <section class="page-section clearfix">
     <div class="container">
         <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-            <h2 class="section-heading mb-4">
-                <p class="mb-3">Hello, {{ username }}. Let's coffee up!</p>
+            <h3 class="section-heading mb-2">
+                <p class="mb-2">Hello, {{ username }}. Let's coffee up!</p>
                 <p class="section-heading-lower section-heading-lower-spiced">Question {{ session + 1 }} of {{ number_of_questions }}</p>
                 <p class="font-italic">Score: {{ score }} of {{ number_of_questions }}</p>
-                <h3 class="mb-4">{{ coffee_question }}</h3>
-            </h2>
+                <h5 class="mb-2">{{ coffee_question }}</h5>
+            </h3>
             <!--#Get image - START-->
             {% if coffee_image %}
                 <div class="mb-4">
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-xs-12 offset-sm-4 col-sm-4">
                         <label for="answer" class="font-weight-bold mb-3">Your answer:</label>
-                        <input type="text" id="answer" name="answer" required>
+                        <input class="mb-3" type="text" id="answer" name="answer" required>
                     </div>
                 </div>
                 <div class="intro-button mx-auto">
