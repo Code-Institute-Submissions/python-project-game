@@ -47,8 +47,11 @@ def add_top_score(username, total_score):
 
 
 def get_top_players():
-    # you should be able to access this here: print(session['score'])
-    # Append this player's score to the file with add_top_score()
+    """
+    This function creates a list with the username and score of players, then
+    it appends it to out .txt file and sorts it in reverse order, returning
+    the first five players
+    """
     with open('data/top_scores.txt', 'r') as top_scores:
         top_players = []
         for line in top_scores.readlines()[1:]:
@@ -58,12 +61,6 @@ def get_top_players():
         for player in top_players:
             tupe = (player.split(':')[0].strip(), int(player.split(':')[1].strip()))
             sorted_top_players.append(tupe)
-
-        # Sort top_players on the 2nd elem of the tuple, reverse the sort,
-        # then return the top 5
-        # Another way:
-        # sorted_final = sorted(sorted_top_players, key=lambda x: x[1])
-        # key = def function(x): return x[1]
 
         return sorted(sorted_top_players, key=lambda x: x[1])[::-1][:5]
 # Getting the top scores - END
@@ -87,24 +84,20 @@ def index():
 @app.route("/quiz", methods=["GET", "POST"])
 def get_coffee_quiz():
 
-    # 1st time page loads, sess num is 0 and takes q0 and a0 into coffee answer
-    # then i post it, but it all runs again before it checks
-    # to see whether it was get or post
-    # so sesion num is still zero at that point#
+    """
+    This function contains the logic of our quiz
+    """
 
-    # Calling question and answer functions - START
+    # Calling question, images and answer functions - START
     coffee_question = get_coffee_questions(riddles, session['quiz_num'])
-    # Trying to get image - START
     coffee_image = get_coffee_images(riddles, session['quiz_num'])
-    # Trying to get image - END
     coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
-    # I'd actually put these in the GET request, and get rid of "i"
-    # Calling question and answer functions - END
+    # Calling question, images and answer functions - END
 
-    # Now we get the number of riddles in our quiz
+    # We get the number of riddles in our quiz (to recognise the last question)
     number_of_questions = len(riddles)
 
-    # If the session is over to avoid cheating by coming back to the quiz we'll
+    # If the session is over, to avoid cheating by coming back to the quiz we'll
     # redirect to the gameover page
     if session['end']:
         top_players = get_top_players()
@@ -114,8 +107,6 @@ def get_coffee_quiz():
                                top_players=top_players)
 
     if request.method == "GET":
-
-        # print("I am here in the 'if GET' statement")
         return render_template("quiz.html",
                                coffee_question=coffee_question,
                                coffee_image=coffee_image,
@@ -131,14 +122,8 @@ def get_coffee_quiz():
         if request.form:
             flag = list(request.form.keys())
             if flag[0] == 'answer':
-                print('The request was answer')
-                # print('request.form is:', request.form)
-                # The guess would equal the user's input
                 coffee_guess = request.form['answer'].lower()
                 mistake = False
-                # print("answer: ", coffee_answer, "guess:  ", coffee_guess)
-                # print("session num:", session['quiz_num'])
-                # We need to check that our answer is correct
                 if coffee_guess == coffee_answer:
                     if session['quiz_num'] < len(riddles) - 1:
                         # If it is correct, we add 1 to our score
@@ -146,15 +131,12 @@ def get_coffee_quiz():
                         #  points to "score"
                         session['score'] += 1
                         session['quiz_num'] += 1
-
                         # Now we need to get the next question and its answer,
                         # remember the session has increased by one
                         coffee_question = get_coffee_questions(riddles, session['quiz_num'])
                         coffee_image = get_coffee_images(riddles, session['quiz_num'])
                         coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
-
                         print("session['quiz_num'] is: ", session['quiz_num'])
-
                         return render_template("quiz.html",
                                                username=session["username"],
                                                coffee_question=coffee_question,
@@ -172,18 +154,14 @@ def get_coffee_quiz():
                         print("right!")
                         # Add points to "score"
                         session['score'] += 1
-                        # We don't want to be out of range, we don't =+ session
-                        # session['quiz_num'] += 0
                         # We get the last question and its answer
                         coffee_question = get_coffee_questions(riddles, session['quiz_num'])
                         coffee_image = get_coffee_images(riddles, session['quiz_num'])
                         coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
-                        print("Last question, we now go to game over page")
                         return redirect(url_for('gameover'))
-
+                
                 else:
                     print("wrong!")
-                    print("coffee_guess: ", coffee_guess)
                     mistake = True
                     return render_template("quiz.html",
                                            username=session["username"],
@@ -199,7 +177,6 @@ def get_coffee_quiz():
         # Trying to pass the answer and check if correct - END
         
             flag = list(request.form.keys())
-            # if request.form.keys()[0] == 'solution':
             if flag[0] == 'solution':
                 print('The request was solution')
                 coffee_guess = request.form['solution'].lower()
@@ -223,9 +200,7 @@ def get_coffee_quiz():
                         coffee_question = get_coffee_questions(riddles, session['quiz_num'])
                         coffee_image = get_coffee_images(riddles, session['quiz_num'])
                         coffee_answer = get_coffee_answers(riddles, session['quiz_num']).lower()
-
                         print("session['quiz_num'] is: ", session['quiz_num'])
-
                         return render_template("quiz.html",
                                                username=session["username"],
                                                coffee_question=coffee_question,
@@ -255,7 +230,6 @@ def get_coffee_quiz():
 
                 else:
                     print("wrong!")
-                    print("coffee_guess: ", coffee_guess)
                     mistake = True
                     return render_template("quiz.html",
                                            username=session["username"],
@@ -269,18 +243,12 @@ def get_coffee_quiz():
                                            mistake=mistake,
                                            end=session['end'])
 
-# PENDING - Changes need to be made as the program runs when testing which is
-# unwanted.
-
 
 @app.route('/gameover')
 def gameover():
     # No more points to "score"
     session['score'] += 0
-    # Because we don't want to be out of range, we don't increment session
-    # session['quiz_num'] += 0
-    # Because that means the game has ended and we'll go to gameover.html,
-    # we changed the session['end'] to True
+    # We changed the session['end'] to True
     session['end'] = True
     add_top_score(session['username'], session['score'])
     top_players = get_top_players()
@@ -292,7 +260,6 @@ def gameover():
 
 
 if __name__ == "__main__":
-    # game_loop()
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
