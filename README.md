@@ -20,7 +20,9 @@ See the at **/assets/images/mockup-the-big-coffee-quiz.pdf**
 
 ## Features
 As requested in the project's brief:
-A form that takes the user's USERNAME and takes them to the starting point of the quiz - Build a web application game that asks players to guess the answer to a pictorial or text-based riddle.
+A form that takes the user's USERNAME and takes them to the starting point of 
+the quiz - Build a web application game that asks players to guess the answer 
+to a pictorial or text-based riddle.
 
 A quiz.html page that refreshes itself after each question, so the user can progress to the next
 and keeps track of the scoring - The player is presented with an image or text that contains the riddle. 
