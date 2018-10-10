@@ -12,3 +12,4 @@ pepi:12
 pepperina:10
 tony:2
 tony:2
+gaby:10
